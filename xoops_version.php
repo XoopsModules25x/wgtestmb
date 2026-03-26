@@ -240,7 +240,7 @@ $modversion['config'][] = [
     'title'       => '\_MI_WGTESTMB_TABLE_TYPE',
     'description' => '\_MI_WGTESTMB_DIVIDEBY_DESC',
     'formtype'    => 'select',
-    'valuetype'   => 'int',
+    'valuetype'   => 'text',
     'default'     => 'bordered',
     'options'     => ['bordered' => 'bordered', 'striped' => 'striped', 'hover' => 'hover', 'condensed' => 'condensed'],
 ];
@@ -260,7 +260,7 @@ $modversion['config'][] = [
     'title'       => '\_MI_WGTESTMB_IDPAYPAL',
     'description' => '\_MI_WGTESTMB_IDPAYPAL_DESC',
     'formtype'    => 'textbox',
-    'valuetype'   => 'textbox',
+    'valuetype'   => 'text',
     'default'     => 'XYZ123',
 ];
 // Show Breadcrumbs

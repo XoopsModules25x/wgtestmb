@@ -103,6 +103,13 @@ switch ($op) {
         // Set Vars
         $testtable1Obj->setVar('tt1_name', Request::getString('tt1_name'));
         $testtable1DateObj = \DateTime::createFromFormat(\_SHORTDATESTRING, Request::getString('tt1_date'));
+        if (false === $testtable1DateObj) {
+            // Get Form
+            $GLOBALS['xoopsTpl']->assign('error', _AM_WGTESTMB_INVALID_DATE);
+            $form = $testtable1Obj->getFormTesttable1();
+            $GLOBALS['xoopsTpl']->assign('form', $form->render());
+            break;
+        }
         $testtable1Obj->setVar('tt1_date', $testtable1DateObj->getTimestamp());
         $testtable1Obj->setVar('tt1_status', Request::getInt('tt1_status'));
         $testtable1Obj->setVar('tt1_comments', Request::getInt('tt1_comments'));

@@ -194,6 +194,8 @@ class Resizer
 
     public function mergeImage(): void
     {
+        $dest = null;
+        $src = null;
         switch ($this->imageMimetype) {
             case 'image/png':
                 $dest = \imagecreatefrompng($this->endFile);
@@ -203,7 +205,17 @@ class Resizer
                 $dest = \imagecreatefromjpeg($this->endFile);
                 $src = \imagecreatefromjpeg($this->sourceFile);
                 break;
-            // ... etc
+            case 'image/gif':
+                $dest = \imagecreatefromgif($this->endFile);
+                $src = \imagecreatefromgif($this->sourceFile);
+                break;
+            default:
+                $this->error = 'Unsupported format';
+                return;
+        }
+        if (!$dest || !$src) {
+            $this->error = 'Failed to load images';
+            return;
         }
         if (4 == $this->mergeType) {
             $imgWidth  = (int)\round($this->maxWidth / 2 - 1);

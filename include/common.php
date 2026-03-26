@@ -26,7 +26,7 @@ if (!\defined('XOOPS_ICONS32_PATH')) {
 if (!\defined('XOOPS_ICONS32_URL')) {
     \define('XOOPS_ICONS32_URL', \XOOPS_URL . '/Frameworks/moduleclasses/icons/32');
 }
-\define('WGTESTMB_DIRNAME', 'wgtestmb');
+\define('WGTESTMB_DIRNAME', \basename(\dirname(__DIR__)));
 \define('WGTESTMB_PATH', \XOOPS_ROOT_PATH . '/modules/' . \WGTESTMB_DIRNAME);
 \define('WGTESTMB_URL', \XOOPS_URL . '/modules/' . \WGTESTMB_DIRNAME);
 \define('WGTESTMB_ICONS_PATH', \WGTESTMB_PATH . '/assets/icons');

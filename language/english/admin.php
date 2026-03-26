@@ -50,6 +50,9 @@ require_once __DIR__ . '/main.php';
 \define('_AM_WGTESTMB_TESTTABLE1_DATE', 'Date');
 \define('_AM_WGTESTMB_TESTTABLE1_STATUS', 'Status');
 \define('_AM_WGTESTMB_TESTTABLE1_COMMENTS', 'Comments');
+// Errors
+\define('_AM_WGTESTMB__INVALID_DATE', 'Invalid date');
+\define('_AM_WGTESTMB__INVALID_PARAM', 'Invalid parameter');
 // General
 \define('_AM_WGTESTMB_FORM_UPLOAD', 'Upload file');
 \define('_AM_WGTESTMB_FORM_UPLOAD_NEW', 'Upload new file: ');

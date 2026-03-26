@@ -7,7 +7,7 @@
             <th class='center'><{$smarty.const._MB_WGTESTMB_TT1_COMMENTS}></th>
         </tr>
     </thead>
-    <{if count($block|default:0) > 0}>
+    <{if $block|default:0|count > 0}>
     <tbody>
         <{foreach item=testtable1 from=$block}>
         <tr class='<{cycle values="odd, even"}>'>
