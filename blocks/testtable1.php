@@ -97,7 +97,7 @@ function b_wgtestmb_testtable1_show($options)
              */
             $block[$i]['id'] = $testtable1All[$i]->getVar('tt1_id');
             $block[$i]['name'] = \htmlspecialchars($testtable1All[$i]->getVar('tt1_name'), ENT_QUOTES | ENT_HTML5);
-            $block[$i]['date'] = \formatTimestamp($testtable1All[$i]->getVar('tt1_date'));
+            $block[$i]['date_text'] = \formatTimestamp($testtable1All[$i]->getVar('tt1_date'));
             $block[$i]['comments'] = $testtable1All[$i]->getVar('tt1_comments');
         }
     }

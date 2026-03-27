@@ -38,6 +38,7 @@ $adminObject->addInfoBox(\_AM_WGTESTMB_STATISTICS);
 $adminObject->addInfoBoxLine(\sprintf( '<label>' . \_AM_WGTESTMB_THEREARE_TESTTABLE1 . '</label>', $countTesttable1));
 
 // Upload Folders
+$folder = [];
 $configurator = new Common\Configurator();
 if ($configurator->uploadFolders && \is_array($configurator->uploadFolders)) {
     foreach (\array_keys($configurator->uploadFolders) as $i) {
@@ -45,14 +46,15 @@ if ($configurator->uploadFolders && \is_array($configurator->uploadFolders)) {
     }
 }
 // Uploads Folders Created
-foreach (\array_keys($folder) as $i) {
-    $adminObject->addConfigBoxLine($folder[$i], 'folder');
-    $adminObject->addConfigBoxLine([$folder[$i], '777'], 'chmod');
+if ($folder) {
+    foreach (\array_keys($folder) as $i) {
+        $adminObject->addConfigBoxLine($folder[$i], 'folder');
+        $adminObject->addConfigBoxLine([$folder[$i], '777'], 'chmod');
+    }
 }
 
 // Render Index
 $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('index.php'));
-// Test Data
 if ($helper->getConfig('displaySampleButton')) {
     \xoops_loadLanguage('admin/modulesadmin', 'system');
     require_once \dirname(__DIR__) . '/testdata/index.php';
@@ -62,5 +64,5 @@ if ($helper->getConfig('displaySampleButton')) {
     $adminObject->displayButton('left');
 }
 $GLOBALS['xoopsTpl']->assign('index', $adminObject->displayIndex());
-// End Test Data
+
 require __DIR__ . '/footer.php';

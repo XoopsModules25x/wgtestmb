@@ -42,7 +42,7 @@ $modversion = [
     'help'                => 'page=help',
     'release_info'        => 'release_info',
     'release_file'        => \XOOPS_URL . '/modules/wgtestmb/docs/release_info file',
-    'release_date'        => '2026/03/26',
+    'release_date'        => '2026/03/27',
     'manual'              => 'link to manual file',
     'manual_file'         => \XOOPS_URL . '/modules/wgtestmb/docs/install.txt',
     'min_php'             => '8,3',

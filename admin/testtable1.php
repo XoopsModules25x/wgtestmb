@@ -84,6 +84,10 @@ switch ($op) {
         $GLOBALS['xoopsTpl']->assign('buttons', $adminObject->displayButton('left'));
         // Request source
         $tt1IdSource = Request::getInt('tt1_id_source');
+        // Check params
+        if (0 === $tt1IdSource) {
+            \redirect_header('testtable1.php?op=list', 3, \_AM_WGTESTMB_INVALID_PARAM);
+        }
         // Get Form
         $testtable1ObjSource = $testtable1Handler->get($tt1IdSource);
         $testtable1Obj = $testtable1ObjSource->xoopsClone();
@@ -105,7 +109,7 @@ switch ($op) {
         $testtable1DateObj = \DateTime::createFromFormat(\_SHORTDATESTRING, Request::getString('tt1_date'));
         if (false === $testtable1DateObj) {
             // Get Form
-            $GLOBALS['xoopsTpl']->assign('error', _AM_WGTESTMB_INVALID_DATE);
+            $GLOBALS['xoopsTpl']->assign('error', \_AM_WGTESTMB_INVALID_DATE);
             $form = $testtable1Obj->getFormTesttable1();
             $GLOBALS['xoopsTpl']->assign('form', $form->render());
             break;

@@ -89,7 +89,6 @@ function wgtestmb_RewriteUrl($module, $array, $type = 'content')
 {
     $comment = '';
     $helper = \XoopsModules\Wgtestmb\Helper::getInstance();
-    $testtable1Handler = $helper->getHandler('testtable1');
     $lenght_id = $helper->getConfig('lenght_id');
     $rewrite_url = $helper->getConfig('rewrite_url');
 
