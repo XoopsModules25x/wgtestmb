@@ -59,7 +59,7 @@ function b_wgtestmb_testtable1_show($options)
             $crTesttable1->add(new \Criteria('tt1_date', \time() - 604800, '>='));
             $crTesttable1->add(new \Criteria('tt1_date', \time(), '<='));
             $crTesttable1->setSort('tt1_date');
-            $crTesttable1->setOrder('ASC');
+            $crTesttable1->setOrder('DESC');
             break;
         case 'hits':
             // For the block: testtable1 hits

@@ -99,6 +99,9 @@ switch ($op) {
         } else {
             $testtable1Obj = $testtable1Handler->create();
         }
+        if (!\is_object($testtable1Obj)) {
+            \redirect_header('testtable1.php', 3, \_MA_WGTESTMB_INVALID_PARAM);
+        }
         $testtable1Obj->setVar('tt1_name', Request::getString('tt1_name'));
         $testtable1DateObj = \DateTime::createFromFormat(\_SHORTDATESTRING, Request::getString('tt1_date'));
         if (false === $testtable1DateObj) {
@@ -138,6 +141,9 @@ switch ($op) {
         }
         // Get Form
         $testtable1Obj = $testtable1Handler->get($tt1Id);
+        if (!\is_object($testtable1Obj)) {
+            \redirect_header('testtable1.php', 3, \_MA_WGTESTMB_INVALID_PARAM);
+        }
         $testtable1Obj->start = $start;
         $testtable1Obj->limit = $limit;
         $form = $testtable1Obj->getFormTesttable1();
@@ -154,6 +160,9 @@ switch ($op) {
         }
         // Get Form
         $testtable1ObjSource = $testtable1Handler->get($tt1IdSource);
+        if (!\is_object($testtable1ObjSource)) {
+            \redirect_header('testtable1.php', 3, \_MA_WGTESTMB_INVALID_PARAM);
+        }
         $testtable1Obj = $testtable1ObjSource->xoopsClone();
         $form = $testtable1Obj->getFormTesttable1();
         $GLOBALS['xoopsTpl']->assign('form', $form->render());
@@ -166,6 +175,9 @@ switch ($op) {
             \redirect_header('testtable1.php?op=list', 3, \_MA_WGTESTMB_INVALID_PARAM);
         }
         $testtable1Obj = $testtable1Handler->get($tt1Id);
+        if (!\is_object($testtable1Obj)) {
+            \redirect_header('testtable1.php', 3, \_MA_WGTESTMB_INVALID_PARAM);
+        }
         $tt1Name = $testtable1Obj->getVar('tt1_name');
         if (isset($_REQUEST['ok']) && 1 == $_REQUEST['ok']) {
             if (!$GLOBALS['xoopsSecurity']->check()) {

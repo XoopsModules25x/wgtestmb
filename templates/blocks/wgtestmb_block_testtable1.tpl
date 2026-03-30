@@ -16,7 +16,7 @@
             <td class='center'><{$testtable1.name|default:false}></td>
             <td class='center'><{$testtable1.date_text|default:false}></td>
             <td class='center'><{$testtable1.comments|default:false}></td>
-            <td class='center'><a href='<{$wgtestmb_url|default:false}>/testtable1.php?op=show&amp;tt1_id=<{$testtable1.id|default:false}>' title='<{$smarty.const._MB_WGTESTMB_TESTTABLE1_GOTO}>'><{$smarty.const._MB_WGTESTMB_TESTTABLE1_GOTO}></a></td>
+            <td class='center'><a href='<{$wgtestmb_url|default:false}>/testtable1.php?op=show&amp;tt1_id=<{$testtable1.id|default:false}>' title='<{$smarty.const._MB_WGTESTMB_TESTTABLE1_GOTO|escape:"htmlattr"}>'><{$smarty.const._MB_WGTESTMB_TESTTABLE1_GOTO|escape:"htmlattr"}></a></td>
         </tr>
         <{/foreach}>
     </tbody>

@@ -110,7 +110,8 @@ function b_wgtestmb_testtable1_spotlight_edit($options)
     $form .= "<option value='0' " . (!\in_array(0, $options) && !\in_array('0', $options) ? '' : "selected='selected'") . '>' . \_MB_WGTESTMB_ALL_TESTTABLE1 . '</option>';
     foreach (\array_keys($testtable1All) as $i) {
         $tt1_id = $testtable1All[$i]->getVar('tt1_id');
-        $form .= "<option value='" . $tt1_id . "' " . (!\in_array($tt1_id, $options) ? '' : "selected='selected'") . '>' . $testtable1All[$i]->getVar('tt1_name') . '</option>';
+        $tt1_name = \htmlspecialchars((string)$testtable1All[$i]->getVar('tt1_name'), ENT_QUOTES | ENT_HTML5);
+        $form .= "<option value='" . $tt1_id . "' " . (!\in_array($tt1_id, $options) ? '' : "selected='selected'") . '>' . $tt1_name . '</option>';
     }
     $form .= '</select>';
 

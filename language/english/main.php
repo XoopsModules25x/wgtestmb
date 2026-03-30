@@ -24,6 +24,7 @@ declare(strict_types=1);
 require_once __DIR__ . '/admin.php';
 
 // ---------------- Main ----------------
+\define('_MA_WGTESTMB_HOME', 'Home');
 \define('_MA_WGTESTMB_INDEX', 'Overview wgTestMB');
 \define('_MA_WGTESTMB_TITLE', 'wgTestMB');
 \define('_MA_WGTESTMB_DESC', 'This module is for doing following...');
@@ -58,6 +59,8 @@ require_once __DIR__ . '/admin.php';
 \define('_MA_WGTESTMB_FORM_DELETE_OK', 'Successfully deleted');
 \define('_MA_WGTESTMB_FORM_SURE_DELETE', "Are you sure to delete: <b><span style='color : Red;'>%s </span></b>");
 \define('_MA_WGTESTMB_FORM_SURE_RENEW', "Are you sure to update: <b><span style='color : Red;'>%s </span></b>");
+// Errors
+\define('_MA_WGTESTMB_INVALID_DATE', 'Invalid date');
 \define('_MA_WGTESTMB_INVALID_PARAM', 'Invalid parameter');
 // Admin link
 \define('_MA_WGTESTMB_ADMIN', 'Admin');
