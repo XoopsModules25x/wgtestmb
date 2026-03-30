@@ -106,7 +106,7 @@ switch ($op) {
         $testtable1DateObj = \DateTime::createFromFormat(\_SHORTDATESTRING, Request::getString('tt1_date'));
         if (false === $testtable1DateObj) {
             // Get Form
-            $GLOBALS['xoopsTpl']->assign('error', \_AM_WGTESTMB_INVALID_DATE);
+            $GLOBALS['xoopsTpl']->assign('error', \_MA_WGTESTMB_INVALID_DATE);
             $form = $testtable1Obj->getFormTesttable1();
             $GLOBALS['xoopsTpl']->assign('form', $form->render());
             break;
