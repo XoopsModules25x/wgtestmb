@@ -42,6 +42,55 @@ function wgtestmb_block_addCatSelect($cats)
 }
 
 /**
+ * Get the permissions ids
+ *
+ * @param  $permtype
+ * @param  $dirname
+ * @return mixed $itemIds
+ */
+function wgtestmbGetMyItemIds($permtype, $dirname)
+{
+    global $xoopsUser;
+    static $permissions = [];
+    if (\is_array($permissions) && \array_key_exists($permtype, $permissions)) {
+        return $permissions[$permtype];
+    }
+    $moduleHandler = \xoops_getHandler('module');
+    $wgtestmbModule = $moduleHandler->getByDirname($dirname);
+    $groups = \is_object($xoopsUser) ? $xoopsUser->getGroups() : \XOOPS_GROUP_ANONYMOUS;
+    $grouppermHandler = \xoops_getHandler('groupperm');
+    $itemIds = $grouppermHandler->getItemIds($permtype, $groups, $wgtestmbModule->getVar('mid'));
+    return $itemIds;
+}
+
+/**
+ * Get the number of testtable1 from the sub categories of a category or sub topics of or topic
+ * @param $mytree
+ * @param $testtable1
+ * @param $entries
+ * @param $cid
+ * @return int
+ */
+function wgtestmbNumbersOfEntries($mytree, $testtable1, $entries, $cid)
+{
+    $count = 0;
+    if(\in_array($cid, $testtable1)) {
+        $child = $mytree->getAllChild($cid);
+        foreach (\array_keys($entries) as $i) {
+            if ($entries[$i]->getVar('tt1_id') == $cid){
+                $count++;
+            }
+            foreach (\array_keys($child) as $j) {
+                if ($entries[$i]->getVar('tt1_id') == $j){
+                    $count++;
+                }
+            }
+        }
+    }
+    return $count;
+}
+
+/**
  * Add content as meta tag to template
  * @param $content
  * @return void

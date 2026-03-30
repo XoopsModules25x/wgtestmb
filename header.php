@@ -27,7 +27,12 @@ $moduleDirName = \basename(__DIR__);
 $xoBreadcrumbs = [];
 // Get instance of module
 $helper = \XoopsModules\Wgtestmb\Helper::getInstance();
+$categoriesHandler = $helper->getHandler('Categories');
+$articlesHandler = $helper->getHandler('Articles');
+$testfieldsHandler = $helper->getHandler('Testfields');
 $testtable1Handler = $helper->getHandler('Testtable1');
+$permissionsHandler = $helper->getHandler('Permissions');
+$ratingsHandler = $helper->getHandler('Ratings');
 // 
 $myts = MyTextSanitizer::getInstance();
 // Default Css Style

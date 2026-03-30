@@ -34,16 +34,41 @@ $adminmenu[] = [
 ];
 $adminmenu[] = [
     'title' => \_MI_WGTESTMB_ADMENU2,
+    'link' => 'admin/categories.php',
+    'icon' => 'assets/icons/32/category.png',
+];
+$adminmenu[] = [
+    'title' => \_MI_WGTESTMB_ADMENU3,
+    'link' => 'admin/articles.php',
+    'icon' => 'assets/icons/32/penguin.png',
+];
+$adminmenu[] = [
+    'title' => \_MI_WGTESTMB_ADMENU4,
+    'link' => 'admin/testfields.php',
+    'icon' => 'assets/icons/32/alert.png',
+];
+$adminmenu[] = [
+    'title' => \_MI_WGTESTMB_ADMENU5,
     'link' => 'admin/testtable1.php',
     'icon' => 'assets/icons/32/blank.gif',
 ];
 $adminmenu[] = [
-    'title' => \_MI_WGTESTMB_ADMENU3,
+    'title' => \_MI_WGTESTMB_ADMENU6,
+    'link' => 'admin/broken.php',
+    'icon' => $sysPathIcon32.'/brokenlink.png',
+];
+$adminmenu[] = [
+    'title' => \_MI_WGTESTMB_ADMENU7,
+    'link' => 'admin/permissions.php',
+    'icon' => $sysPathIcon32.'/permissions.png',
+];
+$adminmenu[] = [
+    'title' => \_MI_WGTESTMB_ADMENU8,
     'link' => 'admin/clone.php',
     'icon' => $sysPathIcon32.'/page_copy.png',
 ];
 $adminmenu[] = [
-    'title' => \_MI_WGTESTMB_ADMENU4,
+    'title' => \_MI_WGTESTMB_ADMENU9,
     'link' => 'admin/feedback.php',
     'icon' => $sysPathIcon32.'/mail_foward.png',
 ];
