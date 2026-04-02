@@ -12,7 +12,7 @@
         <tr class='<{cycle values="odd, even"}>'>
             <td class='center'><{$testfield.id|default:false}></td>
             <td class='center'><{$testfield.text|default:''|escape:'html'}></td>
-            <td class='center'><a href='<{$wgtestmb_url|default:false}>/testfields.php?op=show&amp;tf_id=<{$testfield.id|default:false}>' title='<{$smarty.const._MB_WGTESTMB_TESTFIELD_GOTO|escape:"htmlattr"}>'><{$smarty.const._MB_WGTESTMB_TESTFIELD_GOTO|escape:"htmlattr"}></a></td>
+            <td class='center'><a href='<{$wgtestmb_url|default:''|escape:'htmlattr'}>/testfields.php?op=show&amp;tf_id=<{$testfield.id|default:false}>' title='<{$smarty.const._MB_WGTESTMB_TESTFIELD_GOTO|escape:"htmlattr"}>'><{$smarty.const._MB_WGTESTMB_TESTFIELD_GOTO|escape:"htmlattr"}></a></td>
         </tr>
         <{/foreach}>
     </tbody>

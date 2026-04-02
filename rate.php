@@ -44,16 +44,19 @@ switch ($op) {
         $redir  = \Xmf\Request::getString('HTTP_REFERER', '', 'SERVER');
         if (Constants::TABLE_ARTICLES === $source) {
             $itemid = Request::getInt('art_id');
-            $redir = 'articles.php?op=show&amp;art_id=' . $itemid;
+            $redir = 'articles.php?op=show&art_id=' . $itemid;
         }
         if (Constants::TABLE_TESTFIELDS === $source) {
             $itemid = Request::getInt('tf_id');
-            $redir = 'testfields.php?op=show&amp;tf_id=' . $itemid;
+            $redir = 'testfields.php?op=show&tf_id=' . $itemid;
+        }
+        if (0 === (int)$itemid) {
+            \redirect_header($redir, 3, \_MA_WGTESTMB_INVALID_PARAM);
         }
 
         // Check permissions
         $rate_allowed = false;
-        $groups = (isset($GLOBALS['xoopsUser']) && \is_object($GLOBALS['xoopsUser'])) ? $GLOBALS['xoopsUser']->getGroups() : \XOOPS_GROUP_ANONYMOUS;
+        $groups = (isset($GLOBALS['xoopsUser']) && \is_object($GLOBALS['xoopsUser'])) ? $GLOBALS['xoopsUser']->getGroups() : [\XOOPS_GROUP_ANONYMOUS];
         foreach ($groups as $group) {
             if (\XOOPS_GROUP_ADMIN == $group || \in_array($group, $helper->getConfig('ratingbar_groups'))) {
                 $rate_allowed = true;

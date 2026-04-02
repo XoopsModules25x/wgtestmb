@@ -88,6 +88,7 @@ function b_wgtestmb_testfields_show($options)
     unset($crTestfields);
     if (\count($testfieldsAll) > 0) {
         foreach (\array_keys($testfieldsAll) as $i) {
+            $testfields = $testfieldsAll[$i]->getValuesTestfields();
             /**
              * If you want to use the parameter for limits you have to adapt the line where it should be applied
              * e.g. change
@@ -99,8 +100,8 @@ function b_wgtestmb_testfields_show($options)
              *     }
              *     $block[$i]['title'] =  $myTitle;
              */
-            $block[$i]['id'] = $testfieldsAll[$i]->getVar('tf_id');
-            $block[$i]['text'] = \htmlspecialchars($testfieldsAll[$i]->getVar('tf_text'), ENT_QUOTES | ENT_HTML5);
+            $block[$i]['id']    = $testfields['tf_id'];
+            $block[$i]['text']  = $testfields['text'];
         }
     }
 

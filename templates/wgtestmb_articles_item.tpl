@@ -5,12 +5,12 @@
 </div>
 <div class='panel-body'>
     <span class='col-sm-9 justify'><{$article.descr_short|default:''|escape:'html'}></span>
-    <span class='col-sm-9 justify'><img src='<{$wgtestmb_upload_url|default:false}>/images/articles/<{$article.img|default:false}>' alt='articles' ></span>
+    <span class='col-sm-9 justify'><img src="<{$wgtestmb_upload_url|default:''|escape:'htmlattr'}>/images/articles/<{$article.img|default:''|escape:'html'}>" alt='articles' ></span>
 </div>
 <div class='panel-foot'>
     <span class='block-pie justify'><{$smarty.const._MA_WGTESTMB_ARTICLE_FILE}>: <{$article.file|default:''|escape:'html'}></span>
-    <span class='block-pie justify'><{$smarty.const._MA_WGTESTMB_ARTICLE_CREATED}>: <{$article.created_text|default:false}></span>
-    <span class='block-pie justify'><{$smarty.const._MA_WGTESTMB_ARTICLE_SUBMITTER}>: <{$article.submitter_text|default:false}></span>
+    <span class='block-pie justify'><{$smarty.const._MA_WGTESTMB_ARTICLE_CREATED}>: <{$article.created_text|default:''|escape:'html'}></span>
+    <span class='block-pie justify'><{$smarty.const._MA_WGTESTMB_ARTICLE_SUBMITTER}>: <{$article.submitter_text|default:''|escape:'html'}></span>
     <div class='col-sm-12 right'>
         <{if $showItem|default:false}>
             <a class='btn btn-success right' href='articles.php?op=list&amp;start=<{$start|default:0}>&amp;limit=<{$limit|default:0}>#artId_<{$article.id|default:false}>' title='<{$smarty.const._MA_WGTESTMB_ARTICLES_LIST}>'><{$smarty.const._MA_WGTESTMB_ARTICLES_LIST}></a>

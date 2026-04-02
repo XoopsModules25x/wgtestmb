@@ -42,25 +42,25 @@
             <tr class='<{cycle values='odd, even'}>'>
                 <td class='center'><{$testfield.id|default:false}></td>
                 <td class='center'><{$testfield.text|default:''|escape:'html'}></td>
-                <td class='center'><{$testfield.textarea_short|default:false}></td>
-                <td class='center'><{$testfield.dhtml_short|default:false}></td>
+                <td class='center'><{$testfield.textarea_short|default:''|escape:'html'}></td>
+                <td class='center'><{$testfield.dhtml_short|default:''|escape:'html'}></td>
                 <td class='center'><img src="<{xoModuleIcons16}><{$testfield.checkbox|default:false}>.png" alt="testfields" ></td>
-                <td class='center'><{$testfield.yesno_text|default:false}></td>
+                <td class='center'><{$testfield.yesno_text|default:''|escape:'html'}></td>
                 <td class='center'><{$testfield.selectbox|default:''|escape:'html'}></td>
-                <td class='center'><{$testfield.user_text|default:false}></td>
+                <td class='center'><{$testfield.user_text|default:''|escape:'html'}></td>
                 <td class='center'><span style='background-color:<{$testfield.color|default:false}>;'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
-                <td class='center'><img src="<{xoModuleIcons32}><{$testfield.imagelist|default:false}>" alt="testfields" ></td>
+                <td class='center'><img src="<{xoModuleIcons32}><{$testfield.imagelist|default:''|escape:'htmlattr'}>" alt="testfields" ></td>
                 <td class='center'><{$testfield.urlfile|default:''|escape:'html'}></td>
-                <td class='center'><img src="<{$wgtestmb_upload_url|default:false}>/images/testfields/<{$testfield.uplimage|default:false}>" alt="testfields" style="max-width:100px" ></td>
+                <td class='center'><img src="<{$wgtestmb_upload_url|default:''|escape:'htmlattr'}>/images/testfields/<{$testfield.uplimage|default:''|escape:'htmlattr'}>" alt="testfields" style="max-width:100px" ></td>
                 <td class='center'><{$testfield.uplfile|default:''|escape:'html'}></td>
-                <td class='center'><{$testfield.textdateselect_text|default:false}></td>
+                <td class='center'><{$testfield.textdateselect_text|default:''|escape:'html'}></td>
                 <td class='center'><{$testfield.selectfile|default:''|escape:'html'}></td>
                 <td class='center'><{$testfield.password|default:''|escape:'html'}></td>
                 <td class='center'><{$testfield.country_list|default:''|escape:'html'}></td>
                 <td class='center'><{$testfield.language|default:''|escape:'html'}></td>
                 <td class='center'><{$testfield.radio|default:''|escape:'html'}></td>
-                <td class='center'><img src="<{$modPathIcon16}>status<{$testfield.status|default:false}>.png" alt="<{$testfield.status_text|default:false}>" title="<{$testfield.status_text|default:false}>" ></td>
-                <td class='center'><{$testfield.datetime_text|default:false}></td>
+                <td class='center'><img src="<{$modPathIcon16}>status<{$testfield.status|default:''|escape:'html'}>.png" alt="<{$testfield.status_text|default:''|escape:'html'}>" title="<{$testfield.status_text|default:''|escape:'html'}>" ></td>
+                <td class='center'><{$testfield.datetime_text|default:''|escape:'html'}></td>
                 <td class='center'><{$testfield.combobox|default:''|escape:'html'}></td>
                 <td class='center'><{$testfield.comments|default:''|escape:'html'}></td>
                 <td class='center'><{$testfield.ratings|default:''|escape:'html'}></td>

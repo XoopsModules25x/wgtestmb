@@ -70,16 +70,17 @@ if (!$tpl->is_cached('db:wgtestmb_rss.tpl', $tt1_comments)) {
         $tpl->assign('docs', 'https://cyber.law.harvard.edu/rss/rss.html');
     }
     $tpl->assign('image_url', \XOOPS_URL . $xoopsModuleConfig['logorss']);
-    $dimention = \getimagesize(\XOOPS_ROOT_PATH . $xoopsModuleConfig['logorss']);
-    if (empty($dimention[0])) {
-        $width = 88;
-    } else {
-       $width = ($dimention[0] > 144) ? 144 : $dimention[0];
-    }
-    if (empty($dimention[1])) {
-        $height = 31;
-    } else {
-        $height = ($dimention[1] > 400) ? 400 : $dimention[1];
+    $logoPath = \XOOPS_ROOT_PATH . $xoopsModuleConfig['logorss'];
+    $width = 88;
+    $height = 31;
+    if (\file_exists($logoPath)) {
+        $dimension = \getimagesize($logoPath);
+        if (!empty($dimension[0])) {
+           $width = ($dimension[0] > 144) ? 144 : $dimension[0];
+        }
+        if (!empty($dimension[1])) {
+            $height = ($dimension[1] > 400) ? 400 : $dimension[1];
+        }
     }
     $tpl->assign('image_width', $width);
     $tpl->assign('image_height', $height);
@@ -92,8 +93,8 @@ if (!$tpl->is_cached('db:wgtestmb_rss.tpl', $tt1_comments)) {
             $description_short = \substr($description,0,\strpos($description,'[pagebreak]'));
         }
         $tpl->append('items', ['title' => \htmlspecialchars($testtable1Arr[$i]->getVar('tt1_comments'), ENT_QUOTES),
-                                    'link' => \XOOPS_URL . '/modules/wgtestmb/single.php?tt1_comments=' . $testtable1Arr[$i]->getVar('tt1_comments') . '&amp;tt1_id=' . $testtable1Arr[$i]->getVar('tt1_id'),
-                                    'guid' => \XOOPS_URL . '/modules/wgtestmb/single.php?tt1_comments=' . $testtable1Arr[$i]->getVar('tt1_comments') . '&amp;tt1_id=' . $testtable1Arr[$i]->getVar('tt1_id'),
+                                    'link' => \XOOPS_URL . '/modules/wgtestmb/single.php?tt1_comments=' . $testtable1Arr[$i]->getVar('tt1_comments') . '&tt1_id=' . $testtable1Arr[$i]->getVar('tt1_id'),
+                                    'guid' => \XOOPS_URL . '/modules/wgtestmb/single.php?tt1_comments=' . $testtable1Arr[$i]->getVar('tt1_comments') . '&tt1_id=' . $testtable1Arr[$i]->getVar('tt1_id'),
                                     'pubdate' => \formatTimestamp($testtable1Arr[$i]->getVar('date'), 'rss'),
                                     'description' => \htmlspecialchars($description_short, ENT_QUOTES)
                                 ]);

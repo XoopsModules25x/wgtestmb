@@ -24,16 +24,16 @@
             <{foreach item=article from=$articles_list}>
             <tr class='<{cycle values='odd, even'}>'>
                 <td class='center'><{$article.id|default:false}></td>
-                <td class='center'><{$article.cat_text|default:false}></td>
+                <td class='center'><{$article.cat|default:''|escape:'html'}></td>
                 <td class='center'><{$article.title|default:''|escape:'html'}></td>
-                <td class='center'><{$article.descr_short|default:false}></td>
-                <td class='center'><img src="<{$wgtestmb_upload_url|default:false}>/images/articles/<{$article.img|default:false}>" alt="articles" style="max-width:100px" ></td>
-                <td class='center'><img src="<{$modPathIcon16}>status<{$article.status|default:false}>.png" alt="<{$article.status_text|default:false}>" title="<{$article.status_text|default:false}>" ></td>
+                <td class='center'><{$article.descr_short|default:''|escape:'html'}></td>
+                <td class='center'><img src="<{$wgtestmb_upload_url|default:''|escape:'htmlattr'}>/images/articles/<{$article.img|default:''|escape:'htmlattr'}>" alt="articles" style="max-width:100px" ></td>
+                <td class='center'><img src="<{$modPathIcon16}>status<{$article.status|default:''|escape:'html'}>.png" alt="<{$article.status_text|default:''|escape:'html'}>" title="<{$article.status_text|default:''|escape:'html'}>" ></td>
                 <td class='center'><{$article.file|default:''|escape:'html'}></td>
                 <td class='center'><{$article.ratings|default:''|escape:'html'}></td>
                 <td class='center'><{$article.votes|default:''|escape:'html'}></td>
-                <td class='center'><{$article.created_text|default:false}></td>
-                <td class='center'><{$article.submitter_text|default:false}></td>
+                <td class='center'><{$article.created_text|default:''|escape:'html'}></td>
+                <td class='center'><{$article.submitter_text|default:''|escape:'html'}></td>
                 <td class="center  width5">
                     <a href="articles.php?op=edit&amp;art_id=<{$article.id|default:false}>&amp;start=<{$start|default:0}>&amp;limit=<{$limit|default:0}>" title="<{$smarty.const._EDIT}>"><img src="<{xoModuleIcons16 'edit.png'}>" alt="<{$smarty.const._EDIT}> articles" ></a>
                     <a href="articles.php?op=clone&amp;art_id_source=<{$article.id|default:false}>" title="<{$smarty.const._CLONE}>"><img src="<{xoModuleIcons16 'editcopy.png'}>" alt="<{$smarty.const._CLONE}> articles" ></a>

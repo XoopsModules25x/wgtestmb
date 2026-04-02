@@ -6,20 +6,20 @@
     <span class='col-sm-9 justify'><{$testfield.textarea_short|default:''|escape:'html'}></span>
     <span class='col-sm-9 justify'><{$testfield.dhtml_short|default:''|escape:'html'}></span>
     <span class='col-sm-9 justify'><{$testfield.checkbox|default:''|escape:'html'}></span>
-    <span class='col-sm-9 justify'><{$testfield.yesno_text|default:false}></span>
+    <span class='col-sm-9 justify'><{$testfield.yesno_text|default:''|escape:'html'}></span>
     <span class='col-sm-9 justify'><{$testfield.selectbox|default:''|escape:'html'}></span>
-    <span class='col-sm-9 justify'><{$testfield.user_text|default:false}></span>
+    <span class='col-sm-9 justify'><{$testfield.user_text|default:''|escape:'html'}></span>
     <span class='col-sm-9 justify'><{$testfield.color|default:''|escape:'html'}></span>
-    <span class='col-sm-9 justify'><img src='<{$xoops_icons32_url|default:false}>/<{$testfield.imagelist|default:false}>' alt='testfields' ></span>
+    <span class='col-sm-9 justify'><img src="<{$xoops_icons32_url|default:''|escape:'htmlattr'}>/<{$testfield.imagelist|default:''|escape:'html'}>" alt='testfields' ></span>
     <span class='col-sm-9 justify'><{$testfield.urlfile|default:''|escape:'html'}></span>
-    <span class='col-sm-9 justify'><img src='<{$wgtestmb_upload_url|default:false}>/images/testfields/<{$testfield.uplimage|default:false}>' alt='testfields' ></span>
+    <span class='col-sm-9 justify'><img src="<{$wgtestmb_upload_url|default:''|escape:'htmlattr'}>/images/testfields/<{$testfield.uplimage|default:''|escape:'html'}>" alt='testfields' ></span>
     <span class='col-sm-9 justify'><{$testfield.uplfile|default:''|escape:'html'}></span>
-    <span class='col-sm-9 justify'><{$testfield.textdateselect_text|default:false}></span>
+    <span class='col-sm-9 justify'><{$testfield.textdateselect_text|default:''|escape:'html'}></span>
     <span class='col-sm-9 justify'><{$testfield.selectfile|default:''|escape:'html'}></span>
     <span class='col-sm-9 justify'><{$testfield.country_list|default:''|escape:'html'}></span>
     <span class='col-sm-9 justify'><{$testfield.radio|default:''|escape:'html'}></span>
-    <span class='col-sm-9 justify'><{$testfield.status_text|default:false}></span>
-    <span class='col-sm-9 justify'><{$testfield.datetime_text|default:false}></span>
+    <span class='col-sm-9 justify'><{$testfield.status_text|default:''|escape:'html'}></span>
+    <span class='col-sm-9 justify'><{$testfield.datetime_text|default:''|escape:'html'}></span>
     <span class='col-sm-9 justify'><{$testfield.combobox|default:''|escape:'html'}></span>
     <span class='col-sm-9 justify'><{$testfield.ratings|default:''|escape:'html'}></span>
 </div>

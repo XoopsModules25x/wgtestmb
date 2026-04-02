@@ -76,16 +76,14 @@ class TestfieldsHandler extends \XoopsPersistableObjectHandler
 
     /**
      * Get Count Testfields in the database
-     * @param int    $start
-     * @param int    $limit
      * @param string $sort
      * @param string $order
      * @return int
      */
-    public function getCountTestfields($start = 0, $limit = 0, $sort = 'tf_id ASC, tf_text', $order = 'ASC')
+    public function getCountTestfields($sort = 'tf_id ASC, tf_text', $order = 'ASC')
     {
         $crCountTestfields = new \CriteriaCompo();
-        $crCountTestfields = $this->getTestfieldsCriteria($crCountTestfields, $start, $limit, $sort, $order);
+        $crCountTestfields = $this->getTestfieldsCriteria($crCountTestfields, 0, 0, $sort, $order);
         return $this->getCount($crCountTestfields);
     }
 
@@ -115,8 +113,10 @@ class TestfieldsHandler extends \XoopsPersistableObjectHandler
      */
     private function getTestfieldsCriteria($crTestfields, $start, $limit, $sort, $order)
     {
-        $crTestfields->setStart($start);
-        $crTestfields->setLimit($limit);
+        if ($limit > 0) {
+            $crTestfields->setStart($start);
+            $crTestfields->setLimit($limit);
+        }
         $crTestfields->setSort($sort);
         $crTestfields->setOrder($order);
         return $crTestfields;

@@ -96,7 +96,7 @@ class Articles extends \XoopsObject
         if (!$action) {
             $action = $_SERVER['REQUEST_URI'];
         }
-        $isAdmin = \is_object($GLOBALS['xoopsUser']) && $GLOBALS['xoopsUser']->isAdmin($GLOBALS['xoopsModule']->mid());
+        // $isAdmin = \is_object($GLOBALS['xoopsUser']) && $GLOBALS['xoopsUser']->isAdmin($GLOBALS['xoopsModule']->mid());
         // Permissions for uploader
         $grouppermHandler = \xoops_getHandler('groupperm');
         $groups = \is_object($GLOBALS['xoopsUser']) ? $GLOBALS['xoopsUser']->getGroups() : \XOOPS_GROUP_ANONYMOUS;
@@ -107,12 +107,13 @@ class Articles extends \XoopsObject
         \xoops_load('XoopsFormLoader');
         $form = new \XoopsThemeForm($title, 'form', $action, 'post', true);
         $form->setExtra('enctype="multipart/form-data"');
-        // Form Radio on-/offline artCat
-        $artCat = $this->isNew() ? 0 : $this->getVar('art_cat');
-        $artCatSelect = new \XoopsFormRadio(\_AM_WGTESTMB_ARTICLE_CAT, 'art_cat', $artCat);
-        $artCatSelect->addOption(Constants::RADIO_OFFLINE, \_AM_WGTESTMB_ARTICLE_CAT_OFFLINE);
-        $artCatSelect->addOption(Constants::RADIO_ONLINE, \_AM_WGTESTMB_ARTICLE_CAT_ONLINE);
-        $form->addElement($artCatSelect, true);
+        // Use tag module
+        $dirTag = \is_dir(\XOOPS_ROOT_PATH . '/modules/tag') ? true : false;
+        if (($helper->getConfig('usetag') == 1) && $dirTag) {
+            $tagId = $this->isNew() ? 0 : $this->getVar('art_id');
+            require_once \XOOPS_ROOT_PATH . '/modules/tag/include/formtag.php';
+            $form->addElement(new \XoopsFormTag('tag', 60, 255, $tagId, 0), true);
+        }
         // Form Table categories
         $categoriesHandler = $helper->getHandler('Categories');
         $artCatSelect = new \XoopsFormSelect(\_AM_WGTESTMB_ARTICLE_CAT, 'art_cat', $this->getVar('art_cat'));
@@ -250,7 +251,13 @@ class Articles extends \XoopsObject
         $ret = $this->getValues($keys, $format, $maxDepth);
         $editorMaxchar = $helper->getConfig('editor_maxchar');
         $ret['id']              = $this->getVar('art_id');
-        $ret['cat_text']        = (int)$this->getVar('art_cat') > Constants::RADIO_OFFLINE ? \_AM_WGTESTMB_STATUS_ONLINE : \_AM_WGTESTMB_STATUS_OFFLINE;
+        $categoriesHandler = $helper->getHandler('Categories');
+        $categoriesObj = $categoriesHandler->get($this->getVar('art_cat'));
+        $artCat = '';
+        if (\is_object($categoriesObj)) {
+            $artCat = $categoriesObj->getVar('cat_name');
+        }
+        $ret['cat']             = $artCat;
         $ret['title']           = $this->getVar('art_title');
         $ret['descr_text']      = $this->getVar('art_descr', 'e');
         $ret['descr_short']     = $utility::truncateHtml($ret['descr_text'], $editorMaxchar);

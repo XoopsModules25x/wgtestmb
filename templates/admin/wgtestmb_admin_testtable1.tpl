@@ -19,8 +19,8 @@
             <tr class='<{cycle values='odd, even'}>'>
                 <td class='center'><{$testtable1.id|default:false}></td>
                 <td class='center'><{$testtable1.name|default:''|escape:'html'}></td>
-                <td class='center'><{$testtable1.date_text|default:false}></td>
-                <td class='center'><img src="<{$modPathIcon16}>status<{$testtable1.status|default:false}>.png" alt="<{$testtable1.status_text|default:false}>" title="<{$testtable1.status_text|default:false}>" ></td>
+                <td class='center'><{$testtable1.date_text|default:''|escape:'html'}></td>
+                <td class='center'><img src="<{$modPathIcon16}>status<{$testtable1.status|default:''|escape:'html'}>.png" alt="<{$testtable1.status_text|default:''|escape:'html'}>" title="<{$testtable1.status_text|default:''|escape:'html'}>" ></td>
                 <td class='center'><{$testtable1.comments|default:''|escape:'html'}></td>
                 <td class="center  width5">
                     <a href="testtable1.php?op=edit&amp;tt1_id=<{$testtable1.id|default:false}>&amp;start=<{$start|default:0}>&amp;limit=<{$limit|default:0}>" title="<{$smarty.const._EDIT}>"><img src="<{xoModuleIcons16 'edit.png'}>" alt="<{$smarty.const._EDIT}> testtable1" ></a>

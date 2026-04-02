@@ -62,6 +62,7 @@ function b_wgtestmb_articles_spotlight_show($options)
     unset($crArticles);
     if (\count($articlesAll) > 0) {
         foreach (\array_keys($articlesAll) as $i) {
+            $articles = $articlesAll[$i]->getValuesArticles();
             /**
              * If you want to use the parameter for limits you have to adapt the line where it should be applied
              * e.g. change
@@ -73,15 +74,15 @@ function b_wgtestmb_articles_spotlight_show($options)
              *     }
              *     $block[$i]['title'] =  $myTitle;
              */
-            $block[$i]['id'] = $articlesAll[$i]->getVar('art_id');
-            $block[$i]['cat'] = $articlesAll[$i]->getVar('art_cat');
-            $block[$i]['title'] = \htmlspecialchars($articlesAll[$i]->getVar('art_title'), ENT_QUOTES | ENT_HTML5);
-            $block[$i]['descr_text'] = $articlesAll[$i]->getVar('art_descr', 'e');
-            $block[$i]['descr_short'] = $utility::truncateHtml($articlesAll[$i]->getVar('art_descr', 'e'), $editorMaxchar);
-            $block[$i]['img'] = $articlesAll[$i]->getVar('art_img');
-            $block[$i]['file'] = $articlesAll[$i]->getVar('art_file');
-            $block[$i]['created_text'] = \formatTimestamp($articlesAll[$i]->getVar('art_created'));
-            $block[$i]['submitter_text'] = \XoopsUser::getUnameFromId($articlesAll[$i]->getVar('art_submitter'));
+            $block[$i]['id']              = $articles['art_id'];
+            $block[$i]['cat']             = $articles['cat'];
+            $block[$i]['title']           = $articles['title'];
+            $block[$i]['descr_text']      = $articles['descr_text'];
+            $block[$i]['descr_short']     = $articles['descr_short'];
+            $block[$i]['img']             = $articles['img'];
+            $block[$i]['file']            = $articles['file'];
+            $block[$i]['created_text']    = $articles['created_text'];
+            $block[$i]['submitter_text']  = $articles['submitter_text'];
         }
     }
 

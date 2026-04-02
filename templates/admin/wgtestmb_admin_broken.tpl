@@ -14,11 +14,11 @@
         <tbody>
             <{foreach item=article from=$articles_list}>
             <tr class='<{cycle values='odd, even'}>'>
-                <td class='center'><{$article.table|default:false}></td>
-                <td class='center'><{$article.main|default:false}></td>
+                <td class='center'><{$article.table|default:''|escape:'html'}></td>
+                <td class='center'><{$article.main|default:''|escape:'html'}></td>
                 <td class='center width5'>
-                    <a href='articles.php?op=edit&amp;<{$article.key|default:false}>=<{$article.keyval|default:false}>' title='<{$smarty.const._EDIT}>'><img src="<{xoModuleIcons16 'edit.png'}>" alt='articles' ></a>
-                    <a href='articles.php?op=delete&amp;<{$article.key|default:false}>=<{$article.keyval|default:false}>' title='<{$smarty.const._DELETE}>'><img src="<{xoModuleIcons16 'delete.png'}>" alt='articles' ></a>
+                    <a href='articles.php?op=edit&amp;<{$article.key|default:''|escape:'htmlattr'}>=<{$article.keyval|default:''|escape:'htmlattr'}>' title='<{$smarty.const._EDIT}>'><img src="<{xoModuleIcons16 'edit.png'}>" alt='articles' ></a>
+                    <a href='articles.php?op=delete&amp;<{$article.key|default:''|escape:'htmlattr'}>=<{$article.keyval|default:''|escape:'htmlattr'}>' title='<{$smarty.const._DELETE}>'><img src="<{xoModuleIcons16 'delete.png'}>" alt='articles' ></a>
                 </td>
             </tr>
             <{/foreach}>
@@ -55,11 +55,11 @@
         <tbody>
             <{foreach item=testfield from=$testfields_list}>
             <tr class='<{cycle values='odd, even'}>'>
-                <td class='center'><{$testfield.table|default:false}></td>
-                <td class='center'><{$testfield.main|default:false}></td>
+                <td class='center'><{$testfield.table|default:''|escape:'html'}></td>
+                <td class='center'><{$testfield.main|default:''|escape:'html'}></td>
                 <td class='center width5'>
-                    <a href='testfields.php?op=edit&amp;<{$testfield.key|default:false}>=<{$testfield.keyval|default:false}>' title='<{$smarty.const._EDIT}>'><img src="<{xoModuleIcons16 'edit.png'}>" alt='testfields' ></a>
-                    <a href='testfields.php?op=delete&amp;<{$testfield.key|default:false}>=<{$testfield.keyval|default:false}>' title='<{$smarty.const._DELETE}>'><img src="<{xoModuleIcons16 'delete.png'}>" alt='testfields' ></a>
+                    <a href='testfields.php?op=edit&amp;<{$testfield.key|default:''|escape:'htmlattr'}>=<{$testfield.keyval|default:''|escape:'htmlattr'}>' title='<{$smarty.const._EDIT}>'><img src="<{xoModuleIcons16 'edit.png'}>" alt='testfields' ></a>
+                    <a href='testfields.php?op=delete&amp;<{$testfield.key|default:''|escape:'htmlattr'}>=<{$testfield.keyval|default:''|escape:'htmlattr'}>' title='<{$smarty.const._DELETE}>'><img src="<{xoModuleIcons16 'delete.png'}>" alt='testfields' ></a>
                 </td>
             </tr>
             <{/foreach}>

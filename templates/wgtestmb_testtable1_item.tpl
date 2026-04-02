@@ -3,7 +3,7 @@
 </div>
 <div class='panel-body'>
     <span class='col-sm-9 justify'><{$testtable1.name|default:''|escape:'html'}></span>
-    <span class='col-sm-9 justify'><{$testtable1.date_text|default:false}></span>
+    <span class='col-sm-9 justify'><{$testtable1.date_text|default:''|escape:'html'}></span>
     <span class='col-sm-9 justify'><{$testtable1.comments|default:''|escape:'html'}></span>
 </div>
 <div class='panel-foot'>

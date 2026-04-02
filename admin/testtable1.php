@@ -127,7 +127,7 @@ switch ($op) {
         // Insert Data
         if ($testtable1Handler->insert($testtable1Obj)) {
             $savedTt1Id = $tt1Id > 0 ? $tt1Id : $testtable1Obj->getNewInsertedIdTesttable1();
-                \redirect_header('testtable1.php?op=list&amp;start=' . $start . '&amp;limit=' . $limit, 2, \_AM_WGTESTMB_FORM_OK);
+                \redirect_header('testtable1.php?op=list&start=' . $start . '&limit=' . $limit, 2, \_AM_WGTESTMB_FORM_OK);
         }
         // Get Form
         $GLOBALS['xoopsTpl']->assign('error', $testtable1Obj->getHtmlErrors());

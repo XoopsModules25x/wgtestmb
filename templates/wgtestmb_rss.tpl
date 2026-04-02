@@ -14,7 +14,7 @@
     <{if $image_url != ""}>
     <image>
       <title><{$channel_title|escape:'html':'UTF-8'}></title>
-      <url><{$image_url}></url>
+      <url><{$image_url|escape:'html':'UTF-8'}></url>
       <link><{$channel_link|escape:'html':'UTF-8'}></link>
       <width><{$image_width}></width>
       <height><{$image_height}></height>
@@ -26,7 +26,7 @@
       <link><{$item.link|escape:'html':'UTF-8'}></link>
       <description><{$item.description|escape:'html':'UTF-8'}></description>
       <pubDate><{$item.pubdate}></pubDate>
-      <guid><{$item.guid}></guid>
+      <guid><{$item.guid|escape:'html':'UTF-8'}></guid>
     </item>
     <{/foreach}>
   </channel>

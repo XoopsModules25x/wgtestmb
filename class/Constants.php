@@ -42,10 +42,6 @@ interface Constants
     public const STATUS_APPROVED  = 3;
     public const STATUS_BROKEN    = 4;
 
-    // Constants for radio on-/offline
-    public const RADIO_OFFLINE = 0;
-    public const RADIO_ONLINE  = 1;
-
     // Constants for permissions
     public const PERM_GLOBAL_NONE    = 0;
     public const PERM_GLOBAL_VIEW    = 1;

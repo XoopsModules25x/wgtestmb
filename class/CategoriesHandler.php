@@ -76,16 +76,14 @@ class CategoriesHandler extends \XoopsPersistableObjectHandler
 
     /**
      * Get Count Categories in the database
-     * @param int    $start
-     * @param int    $limit
      * @param string $sort
      * @param string $order
      * @return int
      */
-    public function getCountCategories($start = 0, $limit = 0, $sort = 'cat_id ASC, cat_name', $order = 'ASC')
+    public function getCountCategories($sort = 'cat_id ASC, cat_name', $order = 'ASC')
     {
         $crCountCategories = new \CriteriaCompo();
-        $crCountCategories = $this->getCategoriesCriteria($crCountCategories, $start, $limit, $sort, $order);
+        $crCountCategories = $this->getCategoriesCriteria($crCountCategories, 0, 0, $sort, $order);
         return $this->getCount($crCountCategories);
     }
 
@@ -115,8 +113,10 @@ class CategoriesHandler extends \XoopsPersistableObjectHandler
      */
     private function getCategoriesCriteria($crCategories, $start, $limit, $sort, $order)
     {
-        $crCategories->setStart($start);
-        $crCategories->setLimit($limit);
+        if ($limit > 0) {
+            $crCategories->setStart($start);
+            $crCategories->setLimit($limit);
+        }
         $crCategories->setSort($sort);
         $crCategories->setOrder($order);
         return $crCategories;

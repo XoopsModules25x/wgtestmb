@@ -76,16 +76,14 @@ class ArticlesHandler extends \XoopsPersistableObjectHandler
 
     /**
      * Get Count Articles in the database
-     * @param int    $start
-     * @param int    $limit
      * @param string $sort
      * @param string $order
      * @return int
      */
-    public function getCountArticles($start = 0, $limit = 0, $sort = 'art_id ASC, art_title', $order = 'ASC')
+    public function getCountArticles($sort = 'art_id ASC, art_title', $order = 'ASC')
     {
         $crCountArticles = new \CriteriaCompo();
-        $crCountArticles = $this->getArticlesCriteria($crCountArticles, $start, $limit, $sort, $order);
+        $crCountArticles = $this->getArticlesCriteria($crCountArticles, 0, 0, $sort, $order);
         return $this->getCount($crCountArticles);
     }
 
@@ -115,8 +113,10 @@ class ArticlesHandler extends \XoopsPersistableObjectHandler
      */
     private function getArticlesCriteria($crArticles, $start, $limit, $sort, $order)
     {
-        $crArticles->setStart($start);
-        $crArticles->setLimit($limit);
+        if ($limit > 0) {
+            $crArticles->setStart($start);
+            $crArticles->setLimit($limit);
+        }
         $crArticles->setSort($sort);
         $crArticles->setOrder($order);
         return $crArticles;

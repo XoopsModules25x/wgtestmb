@@ -76,16 +76,14 @@ class Testtable1Handler extends \XoopsPersistableObjectHandler
 
     /**
      * Get Count Testtable1 in the database
-     * @param int    $start
-     * @param int    $limit
      * @param string $sort
      * @param string $order
      * @return int
      */
-    public function getCountTesttable1($start = 0, $limit = 0, $sort = 'tt1_id ASC, tt1_name', $order = 'ASC')
+    public function getCountTesttable1($sort = 'tt1_id ASC, tt1_name', $order = 'ASC')
     {
         $crCountTesttable1 = new \CriteriaCompo();
-        $crCountTesttable1 = $this->getTesttable1Criteria($crCountTesttable1, $start, $limit, $sort, $order);
+        $crCountTesttable1 = $this->getTesttable1Criteria($crCountTesttable1, 0, 0, $sort, $order);
         return $this->getCount($crCountTesttable1);
     }
 
@@ -115,8 +113,10 @@ class Testtable1Handler extends \XoopsPersistableObjectHandler
      */
     private function getTesttable1Criteria($crTesttable1, $start, $limit, $sort, $order)
     {
-        $crTesttable1->setStart($start);
-        $crTesttable1->setLimit($limit);
+        if ($limit > 0) {
+            $crTesttable1->setStart($start);
+            $crTesttable1->setLimit($limit);
+        }
         $crTesttable1->setSort($sort);
         $crTesttable1->setOrder($order);
         return $crTesttable1;

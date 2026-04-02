@@ -68,9 +68,7 @@ require_once __DIR__ . '/main.php';
 \define('_AM_WGTESTMB_ARTICLE_EDIT', 'Edit Article');
 // Elements of Article
 \define('_AM_WGTESTMB_ARTICLE_ID', 'Id');
-\define('_AM_WGTESTMB_ARTICLE_CAT', 'Cat');
-\define('_AM_WGTESTMB_ARTICLE_CAT_OFFLINE', 'Offline');
-\define('_AM_WGTESTMB_ARTICLE_CAT_ONLINE', 'Online');
+\define('_AM_WGTESTMB_ARTICLE_CAT', 'Categories');
 \define('_AM_WGTESTMB_ARTICLE_TITLE', 'Title');
 \define('_AM_WGTESTMB_ARTICLE_DESCR', 'Descr');
 \define('_AM_WGTESTMB_ARTICLE_IMG', 'Img');

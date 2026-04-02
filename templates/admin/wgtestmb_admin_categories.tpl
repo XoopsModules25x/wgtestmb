@@ -19,9 +19,9 @@
             <tr class='<{cycle values='odd, even'}>'>
                 <td class='center'><{$category.id|default:false}></td>
                 <td class='center'><{$category.name|default:''|escape:'html'}></td>
-                <td class='center'><img src="<{$wgtestmb_upload_url|default:false}>/images/categories/<{$category.logo|default:false}>" alt="categories" style="max-width:100px" ></td>
-                <td class='center'><{$category.created_text|default:false}></td>
-                <td class='center'><{$category.submitter_text|default:false}></td>
+                <td class='center'><img src="<{$wgtestmb_upload_url|default:''|escape:'htmlattr'}>/images/categories/<{$category.logo|default:''|escape:'htmlattr'}>" alt="categories" style="max-width:100px" ></td>
+                <td class='center'><{$category.created_text|default:''|escape:'html'}></td>
+                <td class='center'><{$category.submitter_text|default:''|escape:'html'}></td>
                 <td class="center  width5">
                     <a href="categories.php?op=edit&amp;cat_id=<{$category.id|default:false}>&amp;start=<{$start|default:0}>&amp;limit=<{$limit|default:0}>" title="<{$smarty.const._EDIT}>"><img src="<{xoModuleIcons16 'edit.png'}>" alt="<{$smarty.const._EDIT}> categories" ></a>
                     <a href="categories.php?op=clone&amp;cat_id_source=<{$category.id|default:false}>" title="<{$smarty.const._CLONE}>"><img src="<{xoModuleIcons16 'editcopy.png'}>" alt="<{$smarty.const._CLONE}> categories" ></a>

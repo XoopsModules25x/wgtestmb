@@ -36,7 +36,7 @@ if (\file_exists($tcpdf . 'tcpdf.php')) {
 require_once $tcpdf . 'config/tcpdf_config.php';
 // Get new template
 require_once \XOOPS_ROOT_PATH . '/class/template.php';
-$pdfTpl = new $xoopsTpl();
+$pdfTpl = new \xoopsTpl();
 
 // Get requests
 $tfId = Request::getInt('tf_id');

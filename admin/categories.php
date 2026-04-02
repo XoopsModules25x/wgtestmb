@@ -123,10 +123,9 @@ switch ($op) {
                                                     $helper->getConfig('mimetypes_image'), 
                                                     $helper->getConfig('maxsize_image'), null, null);
         if ($uploader->fetchMedia($_POST['xoops_upload_file'][0])) {
-            $extension = \preg_replace('/^.+\.([^.]+)$/sU', '', $filename);
+            $extension = \pathinfo($filename, \PATHINFO_EXTENSION);
             $imgName = \str_replace(' ', '', $imgNameDef) . '.' . $extension;
             $uploader->setPrefix($imgName);
-            $uploader->fetchMedia($_POST['xoops_upload_file'][0]);
             if ($uploader->upload()) {
                 $savedFilename = $uploader->getSavedFileName();
                 $maxwidth  = (int)$helper->getConfig('maxwidth_image');
@@ -167,7 +166,7 @@ switch ($op) {
             if ('' !== $uploaderErrors) {
                 \redirect_header('categories.php?op=edit&cat_id=' . $savedCatId, 5, $uploaderErrors);
             } else {
-                \redirect_header('categories.php?op=list&amp;start=' . $start . '&amp;limit=' . $limit, 2, \_AM_WGTESTMB_FORM_OK);
+                \redirect_header('categories.php?op=list&start=' . $start . '&limit=' . $limit, 2, \_AM_WGTESTMB_FORM_OK);
             }
         }
         // Get Form
