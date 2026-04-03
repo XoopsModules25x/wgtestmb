@@ -37,7 +37,7 @@ function b_wgtestmb_testtable1_spotlight_show($options)
     $block       = [];
 //    $typeBlock   = $options[0];
     $limit       = $options[1];
-//    $lenghtTitle   = $options[2];
+    $lenghtTitle   = $options[2];
     $helper      = Helper::getInstance();
     $testtable1Handler = $helper->getHandler('Testtable1');
     $crTesttable1 = new \CriteriaCompo();

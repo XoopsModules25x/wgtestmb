@@ -63,7 +63,7 @@ switch ($op) {
                 $GLOBALS['xoopsTpl']->assign('pagenav', $pagenav->renderNav());
             }
         } else {
-            $GLOBALS['xoopsTpl']->assign('error', \_AM_WGTESTMB_THEREARENT_TESTTABLE1);
+            $GLOBALS['xoopsTpl']->assign('error', \_AM_WGTESTMB_THEREARENO_TESTTABLE1);
         }
         break;
     case 'new':

@@ -109,7 +109,7 @@ class CategoriesHandler extends \XoopsPersistableObjectHandler
      * @param int    $limit
      * @param string $sort
      * @param string $order
-     * @return int
+     * @return \CriteriaCompo
      */
     private function getCategoriesCriteria($crCategories, $start, $limit, $sort, $order)
     {

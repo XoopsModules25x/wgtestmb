@@ -86,6 +86,8 @@ switch ($op) {
                 $keywords[$i] = $artTitle;
                 $articlesList[$i]['rating'] = $ratingsHandler->getItemRating($articlesAll[$i]->getVar('art_id'), Constants::TABLE_ARTICLES);
                 $articlesList[$i]['rating_source'] = Constants::TABLE_ARTICLES;
+                $token = $GLOBALS['xoopsSecurity']->createToken();
+                $GLOBALS['xoopsTpl']->assign('xoops_token', $token);
             }
             $GLOBALS['xoopsTpl']->assign('articles_list', $articlesList);
             unset($articlesList);
@@ -143,7 +145,7 @@ switch ($op) {
                 $maxheight = (int)$helper->getConfig('maxheight_image');
                 if ($maxwidth > 0 && $maxheight > 0) {
                     // Resize image
-                    $imgHandler                = new Wgtestmb\Common\Resizer();
+                    $imgHandler                = new Common\Resizer();
                     $imgHandler->sourceFile    = \WGTESTMB_UPLOAD_IMAGE_PATH . '/articles/' . $savedFilename;
                     $imgHandler->endFile       = \WGTESTMB_UPLOAD_IMAGE_PATH . '/articles/' . $savedFilename;
                     $imgHandler->imageMimetype = $imgMimetype;
@@ -173,7 +175,6 @@ switch ($op) {
             $extension = \pathinfo($filename, \PATHINFO_EXTENSION);
             $imgName = \str_replace(' ', '', $imgNameDef) . '.' . $extension;
             $uploader->setPrefix($imgName);
-            $uploader->fetchMedia($_POST['xoops_upload_file'][1]);
             if ($uploader->upload()) {
                 $articlesObj->setVar('art_file', $uploader->getSavedFileName());
             } else {

@@ -10,9 +10,9 @@
     <span class='col-sm-9 justify'><{$testfield.selectbox|default:''|escape:'html'}></span>
     <span class='col-sm-9 justify'><{$testfield.user_text|default:''|escape:'html'}></span>
     <span class='col-sm-9 justify'><{$testfield.color|default:''|escape:'html'}></span>
-    <span class='col-sm-9 justify'><img src="<{$xoops_icons32_url|default:''|escape:'htmlattr'}>/<{$testfield.imagelist|default:''|escape:'html'}>" alt='testfields' ></span>
+    <span class='col-sm-9 justify'><img src="<{$xoops_icons32_url|default:''|escape:'htmlattr'}>/<{$testfield.imagelist|default:''|escape:'htmlattr'}>" alt='testfields' ></span>
     <span class='col-sm-9 justify'><{$testfield.urlfile|default:''|escape:'html'}></span>
-    <span class='col-sm-9 justify'><img src="<{$wgtestmb_upload_url|default:''|escape:'htmlattr'}>/images/testfields/<{$testfield.uplimage|default:''|escape:'html'}>" alt='testfields' ></span>
+    <span class='col-sm-9 justify'><img src="<{$wgtestmb_upload_url|default:''|escape:'htmlattr'}>/images/testfields/<{$testfield.uplimage|default:''|escape:'htmlattr'}>" alt='testfields' ></span>
     <span class='col-sm-9 justify'><{$testfield.uplfile|default:''|escape:'html'}></span>
     <span class='col-sm-9 justify'><{$testfield.textdateselect_text|default:''|escape:'html'}></span>
     <span class='col-sm-9 justify'><{$testfield.selectfile|default:''|escape:'html'}></span>

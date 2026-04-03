@@ -37,10 +37,9 @@ function b_wgtestmb_testfields_spotlight_show($options)
     $block       = [];
 //    $typeBlock   = $options[0];
     $limit       = $options[1];
-//    $lenghtTitle   = $options[2];
+    $lenghtTitle   = $options[2];
     $helper      = Helper::getInstance();
     $utility       = new \XoopsModules\Wgtestmb\Utility();
-    $editorMaxchar = $helper->getConfig('editor_maxchar');
     $testfieldsHandler = $helper->getHandler('Testfields');
     $crTestfields = new \CriteriaCompo();
     \array_shift($options);

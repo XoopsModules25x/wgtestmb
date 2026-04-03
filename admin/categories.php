@@ -63,7 +63,7 @@ switch ($op) {
                 $GLOBALS['xoopsTpl']->assign('pagenav', $pagenav->renderNav());
             }
         } else {
-            $GLOBALS['xoopsTpl']->assign('error', \_AM_WGTESTMB_THEREARENT_CATEGORIES);
+            $GLOBALS['xoopsTpl']->assign('error', \_AM_WGTESTMB_THEREARENO_CATEGORIES);
         }
         break;
     case 'new':
@@ -132,7 +132,7 @@ switch ($op) {
                 $maxheight = (int)$helper->getConfig('maxheight_image');
                 if ($maxwidth > 0 && $maxheight > 0) {
                     // Resize image
-                    $imgHandler                = new Wgtestmb\Common\Resizer();
+                    $imgHandler                = new Common\Resizer();
                     $imgHandler->sourceFile    = \WGTESTMB_UPLOAD_IMAGE_PATH . '/categories/' . $savedFilename;
                     $imgHandler->endFile       = \WGTESTMB_UPLOAD_IMAGE_PATH . '/categories/' . $savedFilename;
                     $imgHandler->imageMimetype = $imgMimetype;

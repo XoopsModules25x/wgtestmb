@@ -109,7 +109,7 @@ class Testtable1Handler extends \XoopsPersistableObjectHandler
      * @param int    $limit
      * @param string $sort
      * @param string $order
-     * @return int
+     * @return \CriteriaCompo
      */
     private function getTesttable1Criteria($crTesttable1, $start, $limit, $sort, $order)
     {

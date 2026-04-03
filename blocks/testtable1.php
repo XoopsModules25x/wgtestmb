@@ -38,7 +38,7 @@ function b_wgtestmb_testtable1_show($options)
     $block         = [];
     $typeBlock     = $options[0];
     $limit         = $options[1];
-//    $lenghtTitle   = $options[2];
+    $lenghtTitle   = $options[2];
     \array_shift($options);
     \array_shift($options);
     \array_shift($options);

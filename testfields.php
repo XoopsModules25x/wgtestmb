@@ -86,6 +86,8 @@ switch ($op) {
                 $keywords[$i] = $tfText;
                 $testfieldsList[$i]['rating'] = $ratingsHandler->getItemRating($testfieldsAll[$i]->getVar('tf_id'), Constants::TABLE_TESTFIELDS);
                 $testfieldsList[$i]['rating_source'] = Constants::TABLE_TESTFIELDS;
+                $token = $GLOBALS['xoopsSecurity']->createToken();
+                $GLOBALS['xoopsTpl']->assign('xoops_token', $token);
             }
             $GLOBALS['xoopsTpl']->assign('testfields_list', $testfieldsList);
             unset($testfieldsList);
@@ -165,7 +167,6 @@ switch ($op) {
             $extension = \pathinfo($filename, \PATHINFO_EXTENSION);
             $imgName = \str_replace(' ', '', $imgNameDef) . '.' . $extension;
             $uploader->setPrefix($imgName);
-            $uploader->fetchMedia($_POST['xoops_upload_file'][1]);
             if ($uploader->upload()) {
                 $testfieldsObj->setVar('tf_urlfile', $uploader->getSavedFileName());
             } else {
@@ -195,7 +196,7 @@ switch ($op) {
                 $maxheight = (int)$helper->getConfig('maxheight_image');
                 if ($maxwidth > 0 && $maxheight > 0) {
                     // Resize image
-                    $imgHandler                = new Wgtestmb\Common\Resizer();
+                    $imgHandler                = new Common\Resizer();
                     $imgHandler->sourceFile    = \WGTESTMB_UPLOAD_IMAGE_PATH . '/testfields/' . $savedFilename;
                     $imgHandler->endFile       = \WGTESTMB_UPLOAD_IMAGE_PATH . '/testfields/' . $savedFilename;
                     $imgHandler->imageMimetype = $imgMimetype;
@@ -224,7 +225,6 @@ switch ($op) {
             $extension = \pathinfo($filename, \PATHINFO_EXTENSION);
             $imgName = \str_replace(' ', '', $imgNameDef) . '.' . $extension;
             $uploader->setPrefix($imgName);
-            $uploader->fetchMedia($_POST['xoops_upload_file'][3]);
             if ($uploader->upload()) {
                 $testfieldsObj->setVar('tf_uplfile', $uploader->getSavedFileName());
             } else {
@@ -256,7 +256,6 @@ switch ($op) {
             $extension = \pathinfo($filename, \PATHINFO_EXTENSION);
             $imgName = \str_replace(' ', '', $imgNameDef) . '.' . $extension;
             $uploader->setPrefix($imgName);
-            $uploader->fetchMedia($_POST['xoops_upload_file'][4]);
             if ($uploader->upload()) {
                 $testfieldsObj->setVar('tf_selectfile', $uploader->getSavedFileName());
             } else {
@@ -277,10 +276,17 @@ switch ($op) {
         $testfieldsObj->setVar('tf_radio', Request::getInt('tf_radio'));
         $testfieldsObj->setVar('tf_status', Request::getInt('tf_status'));
         $testfieldDatetimeArr = Request::getArray('tf_datetime');
+        if (!isset($testfieldDatetimeObj['date']) || !isset($testfieldDatetimeObj['time'])) {
+            // Get Form
+            $GLOBALS['xoopsTpl']->assign('error', \_MA_WGTESTMB_INVALID_DATE);
+            $form = $testfieldsObj->getFormTestfields();
+            $GLOBALS['xoopsTpl']->assign('form', $form->render());
+            break;
+        }
         $testfieldDatetimeObj = \DateTime::createFromFormat(\_SHORTDATESTRING, $testfieldDatetimeArr['date']);
         if (false === $testfieldDatetimeObj) {
             // Get Form
-            $GLOBALS['xoopsTpl']->assign('error', INVALID_DATE);
+            $GLOBALS['xoopsTpl']->assign('error', \_MA_WGTESTMB_INVALID_DATE);
             $form = $testfieldsObj->getFormTestfields();
             $GLOBALS['xoopsTpl']->assign('form', $form->render());
             break;

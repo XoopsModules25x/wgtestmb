@@ -37,10 +37,9 @@ function b_wgtestmb_articles_spotlight_show($options)
     $block       = [];
 //    $typeBlock   = $options[0];
     $limit       = $options[1];
-//    $lenghtTitle   = $options[2];
+    $lenghtTitle   = $options[2];
     $helper      = Helper::getInstance();
     $utility       = new \XoopsModules\Wgtestmb\Utility();
-    $editorMaxchar = $helper->getConfig('editor_maxchar');
     $articlesHandler = $helper->getHandler('Articles');
     $crArticles = new \CriteriaCompo();
     \array_shift($options);
@@ -78,7 +77,7 @@ function b_wgtestmb_articles_spotlight_show($options)
             $block[$i]['cat']             = $articles['cat'];
             $block[$i]['title']           = $articles['title'];
             $block[$i]['descr_text']      = $articles['descr_text'];
-            $block[$i]['descr_short']     = $articles['descr_short'];
+            $block[$i]['descr_short']     = $utility::truncateHtml($block[$i]['descr_text'], $lenghtTitle);
             $block[$i]['img']             = $articles['img'];
             $block[$i]['file']            = $articles['file'];
             $block[$i]['created_text']    = $articles['created_text'];

@@ -5,7 +5,7 @@
 </div>
 <div class='panel-body'>
     <span class='col-sm-9 justify'><{$article.descr_short|default:''|escape:'html'}></span>
-    <span class='col-sm-9 justify'><img src="<{$wgtestmb_upload_url|default:''|escape:'htmlattr'}>/images/articles/<{$article.img|default:''|escape:'html'}>" alt='articles' ></span>
+    <span class='col-sm-9 justify'><img src="<{$wgtestmb_upload_url|default:''|escape:'htmlattr'}>/images/articles/<{$article.img|default:''|escape:'htmlattr'}>" alt='articles' ></span>
 </div>
 <div class='panel-foot'>
     <span class='block-pie justify'><{$smarty.const._MA_WGTESTMB_ARTICLE_FILE}>: <{$article.file|default:''|escape:'html'}></span>

@@ -61,4 +61,4 @@ $GLOBALS['xoopsTpl']->append('testfields_list', $testfieldList);
 
 $GLOBALS['xoopsTpl']->assign('xoops_sitename', $GLOBALS['xoopsConfig']['sitename']);
 $GLOBALS['xoopsTpl']->assign('xoops_pagetitle', \strip_tags($testfieldsObj->getVar('tf_text') . ' - ' . \_MA_WGTESTMB_PRINT . ' - ' . $GLOBALS['xoopsModule']->getVar('name')));
-$GLOBALS['xoopsTpl']->display('db:testfields_print.tpl');
+$GLOBALS['xoopsTpl']->display('db:wgtestmb_testfields_print.tpl');

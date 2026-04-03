@@ -71,7 +71,7 @@ class Testtable1 extends \XoopsObject
 
     /**
      * The new inserted $Id
-     * @return inserted id
+     * @return int
      */
     public function getNewInsertedIdTesttable1()
     {
@@ -90,7 +90,7 @@ class Testtable1 extends \XoopsObject
         if (!$action) {
             $action = $_SERVER['REQUEST_URI'];
         }
-        // $isAdmin = \is_object($GLOBALS['xoopsUser']) && $GLOBALS['xoopsUser']->isAdmin($GLOBALS['xoopsModule']->mid());
+        $isAdmin = \is_object($GLOBALS['xoopsUser']) && $GLOBALS['xoopsUser']->isAdmin($GLOBALS['xoopsModule']->mid());
         // Title
         $title = $this->isNew() ? \_AM_WGTESTMB_TESTTABLE1_ADD : \_AM_WGTESTMB_TESTTABLE1_EDIT;
         // Get Theme Form

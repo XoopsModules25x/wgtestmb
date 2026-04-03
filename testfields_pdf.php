@@ -36,7 +36,7 @@ if (\file_exists($tcpdf . 'tcpdf.php')) {
 require_once $tcpdf . 'config/tcpdf_config.php';
 // Get new template
 require_once \XOOPS_ROOT_PATH . '/class/template.php';
-$pdfTpl = new \xoopsTpl();
+$pdfTpl = new \XoopsTpl();
 
 // Get requests
 $tfId = Request::getInt('tf_id');
@@ -48,11 +48,10 @@ if (!\is_object($testfieldsObj)) {
 }
 
 $myts = MyTextSanitizer::getInstance();
+$pdfTpl->assign('wgtestmb_upload_url', \WGTESTMB_UPLOAD_URL);
 
 // Set defaults
 $pdfFilename = 'testfields.pdf';
-$title       = 'Pdf Title';
-$subject     = 'Pdf Subject';
 $content     = '';
 
 // Read data from table and create pdfData
@@ -60,8 +59,6 @@ $content .= \strip_tags($testfieldsObj->getVar('tf_textarea'));
 $content .= \strip_tags($testfieldsObj->getVar('tf_dhtml'));
 $pdfData['author']   = \XoopsUser::getUnameFromId($testfieldsObj->getVar('tf_user'));
 $pdfData['date']     = \formatTimestamp($testfieldsObj->getVar('tf_textdateselect'), 's');
-$pdfData['title']    = \strip_tags($myts->undoHtmlSpecialChars($title));
-$pdfData['subject']  = \strip_tags($subject);
 $pdfData['content']  = $myts->undoHtmlSpecialChars($content);
 $pdfData['fontname'] = PDF_FONT_NAME_MAIN;
 $pdfData['fontsize'] = PDF_FONT_SIZE_MAIN;

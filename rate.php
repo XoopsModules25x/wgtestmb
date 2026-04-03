@@ -75,7 +75,7 @@ switch ($op) {
                 exit;
                 break;
             case Constants::RATING_LIKES:
-                if ($rating > 1 || $rating < -1) {
+                if (!\in_array($rating, [-1, 1], true)) {
                     \redirect_header('index.php', 3, \_MA_WGTESTMB_RATING_VOTE_BAD);
                     exit;
                 }

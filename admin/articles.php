@@ -63,7 +63,7 @@ switch ($op) {
                 $GLOBALS['xoopsTpl']->assign('pagenav', $pagenav->renderNav());
             }
         } else {
-            $GLOBALS['xoopsTpl']->assign('error', \_AM_WGTESTMB_THEREARENT_ARTICLES);
+            $GLOBALS['xoopsTpl']->assign('error', \_AM_WGTESTMB_THEREARENO_ARTICLES);
         }
         break;
     case 'new':
@@ -134,7 +134,7 @@ switch ($op) {
                 $maxheight = (int)$helper->getConfig('maxheight_image');
                 if ($maxwidth > 0 && $maxheight > 0) {
                     // Resize image
-                    $imgHandler                = new Wgtestmb\Common\Resizer();
+                    $imgHandler                = new Common\Resizer();
                     $imgHandler->sourceFile    = \WGTESTMB_UPLOAD_IMAGE_PATH . '/articles/' . $savedFilename;
                     $imgHandler->endFile       = \WGTESTMB_UPLOAD_IMAGE_PATH . '/articles/' . $savedFilename;
                     $imgHandler->imageMimetype = $imgMimetype;
@@ -164,7 +164,6 @@ switch ($op) {
             $extension = \pathinfo($filename, \PATHINFO_EXTENSION);
             $imgName = \str_replace(' ', '', $imgNameDef) . '.' . $extension;
             $uploader->setPrefix($imgName);
-            $uploader->fetchMedia($_POST['xoops_upload_file'][1]);
             if ($uploader->upload()) {
                 $articlesObj->setVar('art_file', $uploader->getSavedFileName());
             } else {

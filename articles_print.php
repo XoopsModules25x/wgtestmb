@@ -61,4 +61,4 @@ $GLOBALS['xoopsTpl']->append('articles_list', $articleList);
 
 $GLOBALS['xoopsTpl']->assign('xoops_sitename', $GLOBALS['xoopsConfig']['sitename']);
 $GLOBALS['xoopsTpl']->assign('xoops_pagetitle', \strip_tags($articlesObj->getVar('art_title') . ' - ' . \_MA_WGTESTMB_PRINT . ' - ' . $GLOBALS['xoopsModule']->getVar('name')));
-$GLOBALS['xoopsTpl']->display('db:articles_print.tpl');
+$GLOBALS['xoopsTpl']->display('db:wgtestmb_articles_print.tpl');

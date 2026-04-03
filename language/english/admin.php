@@ -32,11 +32,11 @@ require_once __DIR__ . '/main.php';
 \define('_AM_WGTESTMB_THEREARE_TESTFIELDS', "There are <span class='bold'>%s</span> testfields in the database");
 \define('_AM_WGTESTMB_THEREARE_TESTTABLE1', "There are <span class='bold'>%s</span> testtable1 in the database");
 // ---------------- Admin Files ----------------
-// There aren't
-\define('_AM_WGTESTMB_THEREARENT_CATEGORIES', "There aren't categories");
-\define('_AM_WGTESTMB_THEREARENT_ARTICLES', "There aren't articles");
-\define('_AM_WGTESTMB_THEREARENT_TESTFIELDS', "There aren't testfields");
-\define('_AM_WGTESTMB_THEREARENT_TESTTABLE1', "There aren't testtable1");
+// There are no
+\define('_AM_WGTESTMB_THEREARENO_CATEGORIES', "There are no categories");
+\define('_AM_WGTESTMB_THEREARENO_ARTICLES', "There are no articles");
+\define('_AM_WGTESTMB_THEREARENO_TESTFIELDS', "There are no testfields");
+\define('_AM_WGTESTMB_THEREARENO_TESTTABLE1', "There are no testtable1");
 // Save/Delete
 \define('_AM_WGTESTMB_FORM_OK', 'Successfully saved');
 \define('_AM_WGTESTMB_FORM_DELETE_OK', 'Successfully deleted');
