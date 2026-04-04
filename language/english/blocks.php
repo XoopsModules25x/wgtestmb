@@ -26,6 +26,22 @@ declare(strict_types=1);
 \define('_MB_WGTESTMB_TITLE_LENGTH', 'Title Length');
 \define('_MB_WGTESTMB_CATTODISPLAY', 'Categories to Display');
 \define('_MB_WGTESTMB_ALLCAT', 'All Categories');
+// Articles
+\define('_MB_WGTESTMB_ARTICLES_TO_DISPLAY', 'Articles to Display');
+\define('_MB_WGTESTMB_ALL_ARTICLES', 'All Articles');
+\define('_MB_WGTESTMB_ART_CAT', 'Cat');
+\define('_MB_WGTESTMB_ART_TITLE', 'Title');
+\define('_MB_WGTESTMB_ART_DESCR', 'Descr');
+\define('_MB_WGTESTMB_ART_IMG', 'Img');
+\define('_MB_WGTESTMB_ART_FILE', 'File');
+\define('_MB_WGTESTMB_ART_CREATED', 'Created');
+\define('_MB_WGTESTMB_ART_SUBMITTER', 'Submitter');
+\define('_MB_WGTESTMB_ARTICLE_GOTO', 'Goto Article');
+// Testfields
+\define('_MB_WGTESTMB_TESTFIELDS_TO_DISPLAY', 'Testfields to Display');
+\define('_MB_WGTESTMB_ALL_TESTFIELDS', 'All Testfields');
+\define('_MB_WGTESTMB_TF_TEXT', 'Text');
+\define('_MB_WGTESTMB_TESTFIELD_GOTO', 'Goto Testfield');
 // Testtable1
 \define('_MB_WGTESTMB_TESTTABLE1_TO_DISPLAY', 'Testtable1 to Display');
 \define('_MB_WGTESTMB_ALL_TESTTABLE1', 'All Testtable1');

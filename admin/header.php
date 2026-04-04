@@ -32,6 +32,9 @@ $modPathIcon32   = \WGTESTMB_URL . '/' . $GLOBALS['xoopsModule']->getInfo('modic
 
 // Get instance of module
 $helper = \XoopsModules\Wgtestmb\Helper::getInstance();
+$categoriesHandler = $helper->getHandler('Categories');
+$articlesHandler = $helper->getHandler('Articles');
+$testfieldsHandler = $helper->getHandler('Testfields');
 $testtable1Handler = $helper->getHandler('Testtable1');
 $myts = MyTextSanitizer::getInstance();
 // 

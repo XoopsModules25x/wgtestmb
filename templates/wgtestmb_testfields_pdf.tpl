@@ -1,0 +1,43 @@
+<div class='panel-heading'><{$content_header|default:false}></div>
+<div class='panel-body'>
+    <div class='col-sm-3'><{$smarty.const._MA_WGTESTMB_TESTFIELD_TEXT}>: </div>
+    <div class='col-sm-8'><{$testfield.text|default:false}></div>
+    <div class='col-sm-3'><{$smarty.const._MA_WGTESTMB_TESTFIELD_TEXTAREA}>: </div>
+    <div class='col-sm-8'><{$testfield.textarea_short|default:false}></div>
+    <div class='col-sm-3'><{$smarty.const._MA_WGTESTMB_TESTFIELD_DHTML}>: </div>
+    <div class='col-sm-8'><{$testfield.dhtml_short|default:false}></div>
+    <div class='col-sm-3'><{$smarty.const._MA_WGTESTMB_TESTFIELD_CHECKBOX}>: </div>
+    <div class='col-sm-8'><{$testfield.checkbox|default:false}></div>
+    <div class='col-sm-3'><{$smarty.const._MA_WGTESTMB_TESTFIELD_YESNO}>: </div>
+    <div class='col-sm-8'><{$testfield.yesno_text|default:false}></div>
+    <div class='col-sm-3'><{$smarty.const._MA_WGTESTMB_TESTFIELD_SELECTBOX}>: </div>
+    <div class='col-sm-8'><{$testfield.selectbox|default:false}></div>
+    <div class='col-sm-3'><{$smarty.const._MA_WGTESTMB_TESTFIELD_USER}>: </div>
+    <div class='col-sm-8'><{$testfield.user_text|default:false}></div>
+    <div class='col-sm-3'><{$smarty.const._MA_WGTESTMB_TESTFIELD_COLOR}>: </div>
+    <div class='col-sm-8'><{$testfield.color|default:false}></div>
+    <div class='col-sm-3'><{$smarty.const._MA_WGTESTMB_TESTFIELD_IMAGELIST}>: </div>
+    <div class='col-sm-8'><img src='<{$xoops_icons32_url|default:false}>/<{$testfield.imagelist|default:false}>' alt='testfields' ></div>
+    <div class='col-sm-3'><{$smarty.const._MA_WGTESTMB_TESTFIELD_URLFILE}>: </div>
+    <div class='col-sm-8'><{$testfield.urlfile|default:false}></div>
+    <div class='col-sm-3'><{$smarty.const._MA_WGTESTMB_TESTFIELD_UPLIMAGE}>: </div>
+    <div class='col-sm-9'><img src='<{$wgtestmb_upload_url|default:false}>/images/testfields/<{$testfield.uplimage|default:false}>' alt='testfields' ></div>
+    <div class='col-sm-3'><{$smarty.const._MA_WGTESTMB_TESTFIELD_UPLFILE}>: </div>
+    <div class='col-sm-8'><{$testfield.uplfile|default:false}></div>
+    <div class='col-sm-3'><{$smarty.const._MA_WGTESTMB_TESTFIELD_TEXTDATESELECT}>: </div>
+    <div class='col-sm-8'><{$testfield.textdateselect_text|default:false}></div>
+    <div class='col-sm-3'><{$smarty.const._MA_WGTESTMB_TESTFIELD_SELECTFILE}>: </div>
+    <div class='col-sm-8'><{$testfield.selectfile|default:false}></div>
+    <div class='col-sm-3'><{$smarty.const._MA_WGTESTMB_TESTFIELD_COUNTRY_LIST}>: </div>
+    <div class='col-sm-8'><{$testfield.country_list|default:false}></div>
+    <div class='col-sm-3'><{$smarty.const._MA_WGTESTMB_TESTFIELD_RADIO}>: </div>
+    <div class='col-sm-8'><{$testfield.radio|default:false}></div>
+    <div class='col-sm-3'><{$smarty.const._MA_WGTESTMB_TESTFIELD_STATUS}>: </div>
+    <div class='col-sm-8'><{$testfield.status_text|default:false}></div>
+    <div class='col-sm-3'><{$smarty.const._MA_WGTESTMB_TESTFIELD_DATETIME}>: </div>
+    <div class='col-sm-8'><{$testfield.datetime_text|default:false}></div>
+    <div class='col-sm-3'><{$smarty.const._MA_WGTESTMB_TESTFIELD_COMBOBOX}>: </div>
+    <div class='col-sm-8'><{$testfield.combobox|default:false}></div>
+    <div class='col-sm-3'><{$smarty.const._MA_WGTESTMB_TESTFIELD_RATINGS}>: </div>
+    <div class='col-sm-8'><{$testfield.ratings|default:false}></div>
+</div>

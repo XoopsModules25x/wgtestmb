@@ -42,7 +42,7 @@ $modversion = [
     'help'                => 'page=help',
     'release_info'        => 'release_info',
     'release_file'        => \XOOPS_URL . '/modules/wgtestmb/docs/release_info file',
-    'release_date'        => '2026/03/30',
+    'release_date'        => '2026/04/04',
     'manual'              => 'link to manual file',
     'manual_file'         => \XOOPS_URL . '/modules/wgtestmb/docs/install.txt',
     'min_php'             => '8.3',
@@ -79,23 +79,61 @@ $modversion['templates'] = [
     ['file' => 'wgtestmb_admin_about.tpl', 'description' => '', 'type' => 'admin'],
     ['file' => 'wgtestmb_admin_header.tpl', 'description' => '', 'type' => 'admin'],
     ['file' => 'wgtestmb_admin_index.tpl', 'description' => '', 'type' => 'admin'],
+    ['file' => 'wgtestmb_admin_categories.tpl', 'description' => '', 'type' => 'admin'],
+    ['file' => 'wgtestmb_admin_articles.tpl', 'description' => '', 'type' => 'admin'],
+    ['file' => 'wgtestmb_admin_testfields.tpl', 'description' => '', 'type' => 'admin'],
     ['file' => 'wgtestmb_admin_testtable1.tpl', 'description' => '', 'type' => 'admin'],
+    ['file' => 'wgtestmb_admin_broken.tpl', 'description' => '', 'type' => 'admin'],
+    ['file' => 'wgtestmb_admin_permissions.tpl', 'description' => '', 'type' => 'admin'],
     ['file' => 'wgtestmb_admin_clone.tpl', 'description' => '', 'type' => 'admin'],
     ['file' => 'wgtestmb_admin_footer.tpl', 'description' => '', 'type' => 'admin'],
     // User templates
     ['file' => 'wgtestmb_header.tpl', 'description' => ''],
     ['file' => 'wgtestmb_index.tpl', 'description' => ''],
+    ['file' => 'wgtestmb_articles.tpl', 'description' => ''],
+    ['file' => 'wgtestmb_articles_list.tpl', 'description' => ''],
+    ['file' => 'wgtestmb_articles_item.tpl', 'description' => ''],
+    ['file' => 'wgtestmb_testfields.tpl', 'description' => ''],
+    ['file' => 'wgtestmb_testfields_list.tpl', 'description' => ''],
+    ['file' => 'wgtestmb_testfields_item.tpl', 'description' => ''],
     ['file' => 'wgtestmb_testtable1.tpl', 'description' => ''],
     ['file' => 'wgtestmb_testtable1_list.tpl', 'description' => ''],
     ['file' => 'wgtestmb_testtable1_item.tpl', 'description' => ''],
     ['file' => 'wgtestmb_breadcrumbs.tpl', 'description' => ''],
+    ['file' => 'wgtestmb_articles_pdf.tpl', 'description' => ''],
+    ['file' => 'wgtestmb_testfields_pdf.tpl', 'description' => ''],
+    ['file' => 'wgtestmb_articles_print.tpl', 'description' => ''],
+    ['file' => 'wgtestmb_testfields_print.tpl', 'description' => ''],
+    ['file' => 'wgtestmb_rate.tpl', 'description' => ''],
+    ['file' => 'wgtestmb_rss.tpl', 'description' => ''],
+    ['file' => 'wgtestmb_search.tpl', 'description' => ''],
     ['file' => 'wgtestmb_footer.tpl', 'description' => ''],
 ];
 // ------------------- Mysql ------------------- //
 $modversion['sqlfile']['mysql'] = 'sql/mysql.sql';
 // Tables
 $modversion['tables'] = [
+    'wgtestmb_categories',
+    'wgtestmb_articles',
+    'wgtestmb_testfields',
     'wgtestmb_testtable1',
+    'wgtestmb_ratings',
+];
+// ------------------- Search ------------------- //
+$modversion['hasSearch'] = 1;
+$modversion['search'] = [
+    'file' => 'include/search.inc.php',
+    'func' => 'wgtestmb_search',
+];
+// ------------------- Comments ------------------- //
+$modversion['hasComments'] = 1;
+$modversion['comments']['pageName'] = 'testfields.php';
+$modversion['comments']['itemName'] = 'tf_id';
+// Comment callback functions
+$modversion['comments']['callbackFile'] = 'include/comment_functions.php';
+$modversion['comments']['callback'] = [
+    'approve' => 'wgtestmbCommentsApprove',
+    'update'  => 'wgtestmbCommentsUpdate',
 ];
 // ------------------- Menu ------------------- //
 $currdirname  = isset($GLOBALS['xoopsModule']) && \is_object($GLOBALS['xoopsModule']) ? $GLOBALS['xoopsModule']->getVar('dirname') : 'system';
@@ -104,18 +142,138 @@ if ($currdirname == $moduleDirName) {
         'name' => \_MI_WGTESTMB_SMNAME1,
         'url'  => 'index.php',
     ];
+    // Sub articles
+    $modversion['sub'][] = [
+        'name' => \_MI_WGTESTMB_SMNAME3,
+        'url'  => 'articles.php',
+    ];
+    // Sub Submit
+    $modversion['sub'][] = [
+        'name' => \_MI_WGTESTMB_SMNAME4,
+        'url'  => 'articles.php?op=new',
+    ];
+    // Sub testfields
+    $modversion['sub'][] = [
+        'name' => \_MI_WGTESTMB_SMNAME5,
+        'url'  => 'testfields.php',
+    ];
+    // Sub Submit
+    $modversion['sub'][] = [
+        'name' => \_MI_WGTESTMB_SMNAME6,
+        'url'  => 'testfields.php?op=new',
+    ];
     // Sub testtable1
     $modversion['sub'][] = [
-        'name' => \_MI_WGTESTMB_SMNAME2,
+        'name' => \_MI_WGTESTMB_SMNAME7,
         'url'  => 'testtable1.php',
     ];
     // Sub Submit
     $modversion['sub'][] = [
-        'name' => \_MI_WGTESTMB_SMNAME3,
+        'name' => \_MI_WGTESTMB_SMNAME8,
         'url'  => 'testtable1.php?op=new',
     ];
 }
 // ------------------- Default Blocks ------------------- //
+// Articles last
+$modversion['blocks'][] = [
+    'file'        => 'articles.php',
+    'name'        => \_MI_WGTESTMB_ARTICLES_BLOCK_LAST,
+    'description' => \_MI_WGTESTMB_ARTICLES_BLOCK_LAST_DESC,
+    'show_func'   => 'b_wgtestmb_articles_show',
+    'edit_func'   => 'b_wgtestmb_articles_edit',
+    'template'    => 'wgtestmb_block_articles.tpl',
+    'options'     => 'last|5|25|0',
+];
+// Articles new
+$modversion['blocks'][] = [
+    'file'        => 'articles.php',
+    'name'        => \_MI_WGTESTMB_ARTICLES_BLOCK_NEW,
+    'description' => \_MI_WGTESTMB_ARTICLES_BLOCK_NEW_DESC,
+    'show_func'   => 'b_wgtestmb_articles_show',
+    'edit_func'   => 'b_wgtestmb_articles_edit',
+    'template'    => 'wgtestmb_block_articles.tpl',
+    'options'     => 'new|5|25|0',
+];
+// Articles hits
+$modversion['blocks'][] = [
+    'file'        => 'articles.php',
+    'name'        => \_MI_WGTESTMB_ARTICLES_BLOCK_HITS,
+    'description' => \_MI_WGTESTMB_ARTICLES_BLOCK_HITS_DESC,
+    'show_func'   => 'b_wgtestmb_articles_show',
+    'edit_func'   => 'b_wgtestmb_articles_edit',
+    'template'    => 'wgtestmb_block_articles.tpl',
+    'options'     => 'hits|5|25|0',
+];
+// Articles top
+$modversion['blocks'][] = [
+    'file'        => 'articles.php',
+    'name'        => \_MI_WGTESTMB_ARTICLES_BLOCK_TOP,
+    'description' => \_MI_WGTESTMB_ARTICLES_BLOCK_TOP_DESC,
+    'show_func'   => 'b_wgtestmb_articles_show',
+    'edit_func'   => 'b_wgtestmb_articles_edit',
+    'template'    => 'wgtestmb_block_articles.tpl',
+    'options'     => 'top|5|25|0',
+];
+// Articles random
+$modversion['blocks'][] = [
+    'file'        => 'articles.php',
+    'name'        => \_MI_WGTESTMB_ARTICLES_BLOCK_RANDOM,
+    'description' => \_MI_WGTESTMB_ARTICLES_BLOCK_RANDOM_DESC,
+    'show_func'   => 'b_wgtestmb_articles_show',
+    'edit_func'   => 'b_wgtestmb_articles_edit',
+    'template'    => 'wgtestmb_block_articles.tpl',
+    'options'     => 'random|5|25|0',
+];
+// Testfields last
+$modversion['blocks'][] = [
+    'file'        => 'testfields.php',
+    'name'        => \_MI_WGTESTMB_TESTFIELDS_BLOCK_LAST,
+    'description' => \_MI_WGTESTMB_TESTFIELDS_BLOCK_LAST_DESC,
+    'show_func'   => 'b_wgtestmb_testfields_show',
+    'edit_func'   => 'b_wgtestmb_testfields_edit',
+    'template'    => 'wgtestmb_block_testfields.tpl',
+    'options'     => 'last|5|25|0',
+];
+// Testfields new
+$modversion['blocks'][] = [
+    'file'        => 'testfields.php',
+    'name'        => \_MI_WGTESTMB_TESTFIELDS_BLOCK_NEW,
+    'description' => \_MI_WGTESTMB_TESTFIELDS_BLOCK_NEW_DESC,
+    'show_func'   => 'b_wgtestmb_testfields_show',
+    'edit_func'   => 'b_wgtestmb_testfields_edit',
+    'template'    => 'wgtestmb_block_testfields.tpl',
+    'options'     => 'new|5|25|0',
+];
+// Testfields hits
+$modversion['blocks'][] = [
+    'file'        => 'testfields.php',
+    'name'        => \_MI_WGTESTMB_TESTFIELDS_BLOCK_HITS,
+    'description' => \_MI_WGTESTMB_TESTFIELDS_BLOCK_HITS_DESC,
+    'show_func'   => 'b_wgtestmb_testfields_show',
+    'edit_func'   => 'b_wgtestmb_testfields_edit',
+    'template'    => 'wgtestmb_block_testfields.tpl',
+    'options'     => 'hits|5|25|0',
+];
+// Testfields top
+$modversion['blocks'][] = [
+    'file'        => 'testfields.php',
+    'name'        => \_MI_WGTESTMB_TESTFIELDS_BLOCK_TOP,
+    'description' => \_MI_WGTESTMB_TESTFIELDS_BLOCK_TOP_DESC,
+    'show_func'   => 'b_wgtestmb_testfields_show',
+    'edit_func'   => 'b_wgtestmb_testfields_edit',
+    'template'    => 'wgtestmb_block_testfields.tpl',
+    'options'     => 'top|5|25|0',
+];
+// Testfields random
+$modversion['blocks'][] = [
+    'file'        => 'testfields.php',
+    'name'        => \_MI_WGTESTMB_TESTFIELDS_BLOCK_RANDOM,
+    'description' => \_MI_WGTESTMB_TESTFIELDS_BLOCK_RANDOM_DESC,
+    'show_func'   => 'b_wgtestmb_testfields_show',
+    'edit_func'   => 'b_wgtestmb_testfields_edit',
+    'template'    => 'wgtestmb_block_testfields.tpl',
+    'options'     => 'random|5|25|0',
+];
 // Testtable1 last
 $modversion['blocks'][] = [
     'file'        => 'testtable1.php',
@@ -167,6 +325,26 @@ $modversion['blocks'][] = [
     'options'     => 'random|5|25|0',
 ];
 // ------------------- Spotlight Blocks ------------------- //
+// Articles spotlight
+$modversion['blocks'][] = [
+    'file'        => 'articles_spotlight.php',
+    'name'        => \_MI_WGTESTMB_ARTICLES_BLOCK_SPOTLIGHT,
+    'description' => \_MI_WGTESTMB_ARTICLES_BLOCK_SPOTLIGHT_DESC,
+    'show_func'   => 'b_wgtestmb_articles_spotlight_show',
+    'edit_func'   => 'b_wgtestmb_articles_spotlight_edit',
+    'template'    => 'wgtestmb_block_articles_spotlight.tpl',
+    'options'     => 'spotlight|5|25|0',
+];
+// Testfields spotlight
+$modversion['blocks'][] = [
+    'file'        => 'testfields_spotlight.php',
+    'name'        => \_MI_WGTESTMB_TESTFIELDS_BLOCK_SPOTLIGHT,
+    'description' => \_MI_WGTESTMB_TESTFIELDS_BLOCK_SPOTLIGHT_DESC,
+    'show_func'   => 'b_wgtestmb_testfields_spotlight_show',
+    'edit_func'   => 'b_wgtestmb_testfields_spotlight_edit',
+    'template'    => 'wgtestmb_block_testfields_spotlight.tpl',
+    'options'     => 'spotlight|5|25|0',
+];
 // Testtable1 spotlight
 $modversion['blocks'][] = [
     'file'        => 'testtable1_spotlight.php',
@@ -194,7 +372,207 @@ $modversion['config'][] = [
     'description' => '\_MI_WGTESTMB_KEYWORDS_DESC',
     'formtype'    => 'textbox',
     'valuetype'   => 'text',
-    'default'     => 'wgtestmb, testtable1',
+    'default'     => 'wgtestmb, categories, articles, testfields, testtable1',
+];
+// Editor Admin
+\xoops_load('xoopseditorhandler');
+$editorHandler = XoopsEditorHandler::getInstance();
+$modversion['config'][] = [
+    'name'        => 'editor_admin',
+    'title'       => '\_MI_WGTESTMB_EDITOR_ADMIN',
+    'description' => '\_MI_WGTESTMB_EDITOR_ADMIN_DESC',
+    'formtype'    => 'select',
+    'valuetype'   => 'text',
+    'default'     => 'dhtml',
+    'options'     => array_flip($editorHandler->getList()),
+];
+// Editor User
+\xoops_load('xoopseditorhandler');
+$editorHandler = XoopsEditorHandler::getInstance();
+$modversion['config'][] = [
+    'name'        => 'editor_user',
+    'title'       => '\_MI_WGTESTMB_EDITOR_USER',
+    'description' => '\_MI_WGTESTMB_EDITOR_USER_DESC',
+    'formtype'    => 'select',
+    'valuetype'   => 'text',
+    'default'     => 'dhtml',
+    'options'     => array_flip($editorHandler->getList()),
+];
+// Editor : max characters admin area
+$modversion['config'][] = [
+    'name'        => 'editor_maxchar',
+    'title'       => '\_MI_WGTESTMB_EDITOR_MAXCHAR',
+    'description' => '\_MI_WGTESTMB_EDITOR_MAXCHAR_DESC',
+    'formtype'    => 'textbox',
+    'valuetype'   => 'int',
+    'default'     => 50,
+];
+// Get groups
+$memberHandler = \xoops_getHandler('member');
+$xoopsGroups  = $memberHandler->getGroupList();
+$groups = [];
+foreach ($xoopsGroups as $key => $group) {
+    $groups[$group]  = $key;
+}
+// General access groups
+$modversion['config'][] = [
+    'name'        => 'groups',
+    'title'       => '\_MI_WGTESTMB_GROUPS',
+    'description' => '\_MI_WGTESTMB_GROUPS_DESC',
+    'formtype'    => 'select_multi',
+    'valuetype'   => 'array',
+    'default'     => $groups,
+    'options'     => $groups,
+];
+// Upload groups
+$modversion['config'][] = [
+    'name'        => 'upload_groups',
+    'title'       => '\_MI_WGTESTMB_UPLOAD_GROUPS',
+    'description' => '\_MI_WGTESTMB_UPLOAD_GROUPS_DESC',
+    'formtype'    => 'select_multi',
+    'valuetype'   => 'array',
+    'default'     => $groups,
+    'options'     => $groups,
+];
+// Get Admin groups
+$crGroups = new \CriteriaCompo();
+$crGroups->add(new \Criteria('group_type', 'Admin'));
+$memberHandler = \xoops_getHandler('member');
+$adminXoopsGroups  = $memberHandler->getGroupList($crGroups);
+$adminGroups = [];
+foreach ($adminXoopsGroups as $key => $adminGroup) {
+    $adminGroups[$adminGroup]  = $key;
+}
+$modversion['config'][] = [
+    'name'        => 'admin_groups',
+    'title'       => '\_MI_WGTESTMB_ADMIN_GROUPS',
+    'description' => '\_MI_WGTESTMB_ADMIN_GROUPS_DESC',
+    'formtype'    => 'select_multi',
+    'valuetype'   => 'array',
+    'default'     => $adminGroups,
+    'options'     => $adminGroups,
+];
+unset($crGroups);
+// Get groups
+$memberHandler = \xoops_getHandler('member');
+$xoopsGroups  = $memberHandler->getGroupList();
+$ratingbar_groups = [];
+foreach ($xoopsGroups as $key => $group) {
+    $ratingbar_groups[$group]  = $key;
+}
+// Rating: Groups with rating permissions
+$modversion['config'][] = [
+    'name'        => 'ratingbar_groups',
+    'title'       => '\_MI_WGTESTMB_RATINGBAR_GROUPS',
+    'description' => '\_MI_WGTESTMB_RATINGBAR_GROUPS_DESC',
+    'formtype'    => 'select_multi',
+    'valuetype'   => 'array',
+    'default'     => [1],
+    'options'     => $ratingbar_groups,
+];
+// Rating : used ratingbar
+$modversion['config'][] = [
+    'name'        => 'ratingbars',
+    'title'       => '\_MI_WGTESTMB_RATINGBARS',
+    'description' => '\_MI_WGTESTMB_RATINGBARS_DESC',
+    'formtype'    => 'select',
+    'valuetype'   => 'int',
+    'default'     => 0,
+    'options'     => ['\_MI_WGTESTMB_RATING_NONE' => 0, '\_MI_WGTESTMB_RATING_5STARS' => 1, '\_MI_WGTESTMB_RATING_10STARS' => 2, '\_MI_WGTESTMB_RATING_LIKES' => 3, '\_MI_WGTESTMB_RATING_10NUM' => 4],
+];
+// create increment steps for file size
+require_once __DIR__ . '/include/xoops_version.inc.php';
+$iniPostMaxSize       = wgtestmbReturnBytes(\ini_get('post_max_size'));
+$iniUploadMaxFileSize = wgtestmbReturnBytes(\ini_get('upload_max_filesize'));
+$maxSize              = min($iniPostMaxSize, $iniUploadMaxFileSize);
+if ($maxSize > 10000 * 1048576) {
+    $increment = 500;
+}
+if ($maxSize <= 10000 * 1048576) {
+    $increment = 200;
+}
+if ($maxSize <= 5000 * 1048576) {
+    $increment = 100;
+}
+if ($maxSize <= 2500 * 1048576) {
+    $increment = 50;
+}
+if ($maxSize <= 1000 * 1048576) {
+    $increment = 10;
+}
+if ($maxSize <= 500 * 1048576) {
+    $increment = 5;
+}
+if ($maxSize <= 100 * 1048576) {
+    $increment = 2;
+}
+if ($maxSize <= 50 * 1048576) {
+    $increment = 1;
+}
+if ($maxSize <= 25 * 1048576) {
+    $increment = 0.5;
+}
+$optionMaxsize = [];
+$i = $increment;
+while ($i * 1048576 <= $maxSize) {
+    $optionMaxsize[$i . ' ' . _MI_WGTESTMB_SIZE_MB] = $i * 1048576;
+    $i += $increment;
+}
+// Uploads : maxsize of image
+$modversion['config'][] = [
+    'name'        => 'maxsize_image',
+    'title'       => '\_MI_WGTESTMB_MAXSIZE_IMAGE',
+    'description' => '\_MI_WGTESTMB_MAXSIZE_IMAGE_DESC',
+    'formtype'    => 'select',
+    'valuetype'   => 'int',
+    'default'     => 3145728,
+    'options'     => $optionMaxsize,
+];
+// Uploads : mimetypes of image
+$modversion['config'][] = [
+    'name'        => 'mimetypes_image',
+    'title'       => '\_MI_WGTESTMB_MIMETYPES_IMAGE',
+    'description' => '\_MI_WGTESTMB_MIMETYPES_IMAGE_DESC',
+    'formtype'    => 'select_multi',
+    'valuetype'   => 'array',
+    'default'     => ['image/gif', 'image/jpeg', 'image/png'],
+    'options'     => ['bmp' => 'image/bmp','gif' => 'image/gif','pjpeg' => 'image/pjpeg', 'jpeg' => 'image/jpeg','jpg' => 'image/jpg','jpe' => 'image/jpe', 'png' => 'image/png'],
+];
+$modversion['config'][] = [
+    'name'        => 'maxwidth_image',
+    'title'       => '\_MI_WGTESTMB_MAXWIDTH_IMAGE',
+    'description' => '\_MI_WGTESTMB_MAXWIDTH_IMAGE_DESC',
+    'formtype'    => 'textbox',
+    'valuetype'   => 'int',
+    'default'     => 800,
+];
+$modversion['config'][] = [
+    'name'        => 'maxheight_image',
+    'title'       => '\_MI_WGTESTMB_MAXHEIGHT_IMAGE',
+    'description' => '\_MI_WGTESTMB_MAXHEIGHT_IMAGE_DESC',
+    'formtype'    => 'textbox',
+    'valuetype'   => 'int',
+    'default'     => 800,
+];
+// Uploads : maxsize of file
+$modversion['config'][] = [
+    'name'        => 'maxsize_file',
+    'title'       => '\_MI_WGTESTMB_MAXSIZE_FILE',
+    'description' => '\_MI_WGTESTMB_MAXSIZE_FILE_DESC',
+    'formtype'    => 'select',
+    'valuetype'   => 'int',
+    'default'     => 3145728,
+    'options'     => $optionMaxsize,
+];
+// Uploads : mimetypes of file
+$modversion['config'][] = [
+    'name'        => 'mimetypes_file',
+    'title'       => '\_MI_WGTESTMB_MIMETYPES_FILE',
+    'description' => '\_MI_WGTESTMB_MIMETYPES_FILE_DESC',
+    'formtype'    => 'select_multi',
+    'valuetype'   => 'array',
+    'default'     => ['application/pdf', 'application/zip', 'text/comma-separated-values', 'text/plain', 'image/gif', 'image/jpeg', 'image/png'],
+    'options'     => ['gif' => 'image/gif','pjpeg' => 'image/pjpeg', 'jpeg' => 'image/jpeg','jpg' => 'image/jpg','jpe' => 'image/jpe', 'png' => 'image/png', 'pdf' => 'application/pdf','zip' => 'application/zip','csv' => 'text/comma-separated-values', 'txt' => 'text/plain', 'xml' => 'application/xml', 'xlsx' => 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'docx' => 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'],
 ];
 // Admin pager
 $modversion['config'][] = [
@@ -213,6 +591,15 @@ $modversion['config'][] = [
     'formtype'    => 'textbox',
     'valuetype'   => 'int',
     'default'     => 10,
+];
+// Use tag
+$modversion['config'][] = [
+    'name'        => 'usetag',
+    'title'       => '\_MI_WGTESTMB_USE_TAG',
+    'description' => '\_MI_WGTESTMB_USE_TAG_DESC',
+    'formtype'    => 'yesno',
+    'valuetype'   => 'int',
+    'default'     => 0,
 ];
 // Number column
 $modversion['config'][] = [
@@ -307,4 +694,192 @@ $modversion['config'][] = [
     'formtype'    => 'textbox',
     'valuetype'   => 'text',
     'default'     => 'https://xoops.org/modules/newbb',
+];
+// ------------------- Notifications ------------------- //
+$modversion['hasNotification'] = 1;
+$modversion['notification'] = [
+    'lookup_file' => 'include/notification.inc.php',
+    'lookup_func' => 'wgtestmb_notify_iteminfo',
+];
+// Categories of notification
+// Global Notify
+$modversion['notification']['category'][] = [
+    'name'           => 'global',
+    'title'          => \_MI_WGTESTMB_NOTIFY_GLOBAL,
+    'description'    => '',
+    'subscribe_from' => ['index.php', 'articles.php', 'testfields.php'],
+];
+// Article Notify
+$modversion['notification']['category'][] = [
+    'name'           => 'articles',
+    'title'          => \_MI_WGTESTMB_NOTIFY_ARTICLE,
+    'description'    => '',
+    'subscribe_from' => 'articles.php',
+    'item_name'      => 'art_id',
+    'allow_bookmark' => 1,
+];
+// Testfield Notify
+$modversion['notification']['category'][] = [
+    'name'           => 'testfields',
+    'title'          => \_MI_WGTESTMB_NOTIFY_TESTFIELD,
+    'description'    => '',
+    'subscribe_from' => 'testfields.php',
+    'item_name'      => 'tf_id',
+    'allow_bookmark' => 1,
+];
+// Global events notification
+// GLOBAL_NEW Notify
+$modversion['notification']['event'][] = [
+    'name'          => 'global_new',
+    'category'      => 'global',
+    'admin_only'    => 0,
+    'title'         => \_MI_WGTESTMB_NOTIFY_GLOBAL_NEW,
+    'caption'       => \_MI_WGTESTMB_NOTIFY_GLOBAL_NEW_CAPTION,
+    'description'   => '',
+    'mail_template' => 'global_new_notify',
+    'mail_subject'  => \_MI_WGTESTMB_NOTIFY_GLOBAL_NEW_SUBJECT,
+];
+// GLOBAL_MODIFY Notify
+$modversion['notification']['event'][] = [
+    'name'          => 'global_modify',
+    'category'      => 'global',
+    'admin_only'    => 0,
+    'title'         => \_MI_WGTESTMB_NOTIFY_GLOBAL_MODIFY,
+    'caption'       => \_MI_WGTESTMB_NOTIFY_GLOBAL_MODIFY_CAPTION,
+    'description'   => '',
+    'mail_template' => 'global_modify_notify',
+    'mail_subject'  => \_MI_WGTESTMB_NOTIFY_GLOBAL_MODIFY_SUBJECT,
+];
+// GLOBAL_DELETE Notify
+$modversion['notification']['event'][] = [
+    'name'          => 'global_delete',
+    'category'      => 'global',
+    'admin_only'    => 0,
+    'title'         => \_MI_WGTESTMB_NOTIFY_GLOBAL_DELETE,
+    'caption'       => \_MI_WGTESTMB_NOTIFY_GLOBAL_DELETE_CAPTION,
+    'description'   => '',
+    'mail_template' => 'global_delete_notify',
+    'mail_subject'  => \_MI_WGTESTMB_NOTIFY_GLOBAL_DELETE_SUBJECT,
+];
+// GLOBAL_APPROVE Notify
+$modversion['notification']['event'][] = [
+    'name'          => 'global_approve',
+    'category'      => 'global',
+    'admin_only'    => 1,
+    'title'         => \_MI_WGTESTMB_NOTIFY_GLOBAL_APPROVE,
+    'caption'       => \_MI_WGTESTMB_NOTIFY_GLOBAL_APPROVE_CAPTION,
+    'description'   => '',
+    'mail_template' => 'global_approve_notify',
+    'mail_subject'  => \_MI_WGTESTMB_NOTIFY_GLOBAL_APPROVE_SUBJECT,
+];
+// GLOBAL_BROKEN Notify
+$modversion['notification']['event'][] = [
+    'name'          => 'global_broken',
+    'category'      => 'global',
+    'admin_only'    => 1,
+    'title'         => \_MI_WGTESTMB_NOTIFY_GLOBAL_BROKEN,
+    'caption'       => \_MI_WGTESTMB_NOTIFY_GLOBAL_BROKEN_CAPTION,
+    'description'   => '',
+    'mail_template' => 'global_broken_notify',
+    'mail_subject'  => \_MI_WGTESTMB_NOTIFY_GLOBAL_BROKEN_SUBJECT,
+];
+// GLOBAL_COMMENT Notify
+$modversion['notification']['event'][] = [
+    'name'          => 'global_comment',
+    'category'      => 'global',
+    'admin_only'    => 0,
+    'title'         => \_MI_WGTESTMB_NOTIFY_GLOBAL_COMMENT,
+    'caption'       => \_MI_WGTESTMB_NOTIFY_GLOBAL_COMMENT_CAPTION,
+    'description'   => '',
+    'mail_template' => 'global_comment_notify',
+    'mail_subject'  => \_MI_WGTESTMB_NOTIFY_GLOBAL_COMMENT_SUBJECT,
+];
+// Event notifications for items
+// ARTICLE_MODIFY Notify
+$modversion['notification']['event'][] = [
+    'name'          => 'article_modify',
+    'category'      => 'articles',
+    'admin_only'    => 0,
+    'title'         => \_MI_WGTESTMB_NOTIFY_ARTICLE_MODIFY,
+    'caption'       => \_MI_WGTESTMB_NOTIFY_ARTICLE_MODIFY_CAPTION,
+    'description'   => '',
+    'mail_template' => 'article_modify_notify',
+    'mail_subject'  => \_MI_WGTESTMB_NOTIFY_ARTICLE_MODIFY_SUBJECT,
+];
+// ARTICLE_DELETE Notify
+$modversion['notification']['event'][] = [
+    'name'          => 'article_delete',
+    'category'      => 'articles',
+    'admin_only'    => 0,
+    'title'         => \_MI_WGTESTMB_NOTIFY_ARTICLE_DELETE,
+    'caption'       => \_MI_WGTESTMB_NOTIFY_ARTICLE_DELETE_CAPTION,
+    'description'   => '',
+    'mail_template' => 'article_delete_notify',
+    'mail_subject'  => \_MI_WGTESTMB_NOTIFY_ARTICLE_DELETE_SUBJECT,
+];
+// ARTICLE_APPROVE Notify
+$modversion['notification']['event'][] = [
+    'name'          => 'article_approve',
+    'category'      => 'articles',
+    'admin_only'    => 0,
+    'title'         => \_MI_WGTESTMB_NOTIFY_ARTICLE_APPROVE,
+    'caption'       => \_MI_WGTESTMB_NOTIFY_ARTICLE_APPROVE_CAPTION,
+    'description'   => '',
+    'mail_template' => 'article_approve_notify',
+    'mail_subject'  => \_MI_WGTESTMB_NOTIFY_ARTICLE_APPROVE_SUBJECT,
+];
+// ARTICLE_BROKEN Notify
+$modversion['notification']['event'][] = [
+    'name'          => 'article_broken',
+    'category'      => 'articles',
+    'admin_only'    => 0,
+    'title'         => \_MI_WGTESTMB_NOTIFY_ARTICLE_BROKEN,
+    'caption'       => \_MI_WGTESTMB_NOTIFY_ARTICLE_BROKEN_CAPTION,
+    'description'   => '',
+    'mail_template' => 'article_broken_notify',
+    'mail_subject'  => \_MI_WGTESTMB_NOTIFY_ARTICLE_BROKEN_SUBJECT,
+];
+// TESTFIELD_MODIFY Notify
+$modversion['notification']['event'][] = [
+    'name'          => 'testfield_modify',
+    'category'      => 'testfields',
+    'admin_only'    => 0,
+    'title'         => \_MI_WGTESTMB_NOTIFY_TESTFIELD_MODIFY,
+    'caption'       => \_MI_WGTESTMB_NOTIFY_TESTFIELD_MODIFY_CAPTION,
+    'description'   => '',
+    'mail_template' => 'testfield_modify_notify',
+    'mail_subject'  => \_MI_WGTESTMB_NOTIFY_TESTFIELD_MODIFY_SUBJECT,
+];
+// TESTFIELD_DELETE Notify
+$modversion['notification']['event'][] = [
+    'name'          => 'testfield_delete',
+    'category'      => 'testfields',
+    'admin_only'    => 0,
+    'title'         => \_MI_WGTESTMB_NOTIFY_TESTFIELD_DELETE,
+    'caption'       => \_MI_WGTESTMB_NOTIFY_TESTFIELD_DELETE_CAPTION,
+    'description'   => '',
+    'mail_template' => 'testfield_delete_notify',
+    'mail_subject'  => \_MI_WGTESTMB_NOTIFY_TESTFIELD_DELETE_SUBJECT,
+];
+// TESTFIELD_APPROVE Notify
+$modversion['notification']['event'][] = [
+    'name'          => 'testfield_approve',
+    'category'      => 'testfields',
+    'admin_only'    => 0,
+    'title'         => \_MI_WGTESTMB_NOTIFY_TESTFIELD_APPROVE,
+    'caption'       => \_MI_WGTESTMB_NOTIFY_TESTFIELD_APPROVE_CAPTION,
+    'description'   => '',
+    'mail_template' => 'testfield_approve_notify',
+    'mail_subject'  => \_MI_WGTESTMB_NOTIFY_TESTFIELD_APPROVE_SUBJECT,
+];
+// TESTFIELD_BROKEN Notify
+$modversion['notification']['event'][] = [
+    'name'          => 'testfield_broken',
+    'category'      => 'testfields',
+    'admin_only'    => 0,
+    'title'         => \_MI_WGTESTMB_NOTIFY_TESTFIELD_BROKEN,
+    'caption'       => \_MI_WGTESTMB_NOTIFY_TESTFIELD_BROKEN_CAPTION,
+    'description'   => '',
+    'mail_template' => 'testfield_broken_notify',
+    'mail_subject'  => \_MI_WGTESTMB_NOTIFY_TESTFIELD_BROKEN_SUBJECT,
 ];

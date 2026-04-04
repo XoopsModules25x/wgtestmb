@@ -30,11 +30,17 @@ require __DIR__ . '/header.php';
 $templateMain = 'wgtestmb_admin_index.tpl';
 
 // Count elements
+$countCategories = $categoriesHandler->getCount();
+$countArticles = $articlesHandler->getCount();
+$countTestfields = $testfieldsHandler->getCount();
 $countTesttable1 = $testtable1Handler->getCount();
 
 // InfoBox Statistics
 $adminObject->addInfoBox(\_AM_WGTESTMB_STATISTICS);
 // Info elements
+$adminObject->addInfoBoxLine(\sprintf( '<label>' . \_AM_WGTESTMB_THEREARE_CATEGORIES . '</label>', $countCategories));
+$adminObject->addInfoBoxLine(\sprintf( '<label>' . \_AM_WGTESTMB_THEREARE_ARTICLES . '</label>', $countArticles));
+$adminObject->addInfoBoxLine(\sprintf( '<label>' . \_AM_WGTESTMB_THEREARE_TESTFIELDS . '</label>', $countTestfields));
 $adminObject->addInfoBoxLine(\sprintf( '<label>' . \_AM_WGTESTMB_THEREARE_TESTTABLE1 . '</label>', $countTesttable1));
 
 // Upload Folders

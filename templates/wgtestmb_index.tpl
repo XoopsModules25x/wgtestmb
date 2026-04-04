@@ -12,6 +12,8 @@
             <td class='bold pad5'>
                 <ul class='menu text-center'>
                     <li><a href='<{$wgtestmb_url}>'><{$smarty.const._MA_WGTESTMB_INDEX}></a></li>
+                    <li><a href='<{$wgtestmb_url}>/articles.php'><{$smarty.const._MA_WGTESTMB_ARTICLES}></a></li>
+                    <li><a href='<{$wgtestmb_url}>/testfields.php'><{$smarty.const._MA_WGTESTMB_TESTFIELDS}></a></li>
                     <li><a href='<{$wgtestmb_url}>/testtable1.php'><{$smarty.const._MA_WGTESTMB_TESTTABLE1}></a></li>
                 </ul>
             </td>
@@ -27,6 +29,42 @@
 </table>
 <!-- End index list -->
 
+<div class='wgtestmb-linetitle'><{$smarty.const._MA_WGTESTMB_INDEX_LATEST_LIST}></div>
+<{if $articlesCount|default:0 > 0}>
+    <!-- Start show new articles in index -->
+    <table class='table table-<{$table_type|default:''}>'>
+        <tr>
+            <!-- Start new link loop -->
+            <{foreach item=article from=$articles_list name=article}>
+                <td class='col_width<{$numb_col}> top center'>
+                    <{include file='db:wgtestmb_articles_list.tpl' article=$article}>
+                </td>
+                <{if $smarty.foreach.article.iteration is div by $divideby}>
+                    </tr><tr>
+                <{/if}>
+            <{/foreach}>
+            <!-- End new link loop -->
+        </tr>
+    </table>
+<{/if}>
+<div class='wgtestmb-linetitle'><{$smarty.const._MA_WGTESTMB_INDEX_LATEST_LIST}></div>
+<{if $testfieldsCount|default:0 > 0}>
+    <!-- Start show new testfields in index -->
+    <table class='table table-<{$table_type|default:''}>'>
+        <tr>
+            <!-- Start new link loop -->
+            <{foreach item=testfield from=$testfields_list name=testfield}>
+                <td class='col_width<{$numb_col}> top center'>
+                    <{include file='db:wgtestmb_testfields_list.tpl' testfield=$testfield}>
+                </td>
+                <{if $smarty.foreach.testfield.iteration is div by $divideby}>
+                    </tr><tr>
+                <{/if}>
+            <{/foreach}>
+            <!-- End new link loop -->
+        </tr>
+    </table>
+<{/if}>
 <div class='wgtestmb-linetitle'><{$smarty.const._MA_WGTESTMB_INDEX_LATEST_LIST}></div>
 <{if $testtable1Count|default:0 > 0}>
     <!-- Start show new testtable1 in index -->

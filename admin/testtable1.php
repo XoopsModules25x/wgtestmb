@@ -63,7 +63,7 @@ switch ($op) {
                 $GLOBALS['xoopsTpl']->assign('pagenav', $pagenav->renderNav());
             }
         } else {
-            $GLOBALS['xoopsTpl']->assign('error', \_AM_WGTESTMB_THEREARENT_TESTTABLE1);
+            $GLOBALS['xoopsTpl']->assign('error', \_AM_WGTESTMB_THEREARENO_TESTTABLE1);
         }
         break;
     case 'new':
@@ -126,7 +126,8 @@ switch ($op) {
         $testtable1Obj->setVar('tt1_comments', Request::getInt('tt1_comments'));
         // Insert Data
         if ($testtable1Handler->insert($testtable1Obj)) {
-                \redirect_header('testtable1.php?op=list&amp;start=' . $start . '&amp;limit=' . $limit, 2, \_AM_WGTESTMB_FORM_OK);
+            $savedTt1Id = $tt1Id > 0 ? $tt1Id : $testtable1Obj->getNewInsertedIdTesttable1();
+                \redirect_header('testtable1.php?op=list&start=' . $start . '&limit=' . $limit, 2, \_AM_WGTESTMB_FORM_OK);
         }
         // Get Form
         $GLOBALS['xoopsTpl']->assign('error', $testtable1Obj->getHtmlErrors());

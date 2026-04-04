@@ -46,7 +46,6 @@ class Testtable1 extends \XoopsObject
     /**
      * Constructor
      *
-     * @param null
      */
     public function __construct()
     {
@@ -58,9 +57,8 @@ class Testtable1 extends \XoopsObject
     }
 
     /**
-     * @static function &getInstance
+     * @static function getInstance
      *
-     * @param null
      */
     public static function getInstance()
     {
@@ -68,11 +66,12 @@ class Testtable1 extends \XoopsObject
         if (!$instance) {
             $instance = new self();
         }
+        return $instance;
     }
 
     /**
      * The new inserted $Id
-     * @return inserted id
+     * @return int
      */
     public function getNewInsertedIdTesttable1()
     {

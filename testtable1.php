@@ -117,7 +117,7 @@ switch ($op) {
         // Insert Data
         if ($testtable1Handler->insert($testtable1Obj)) {
             // redirect after insert
-                \redirect_header('testtable1.php?op=list&amp;start=' . $start . '&amp;limit=' . $limit, 2, \_MA_WGTESTMB_FORM_OK);
+                \redirect_header('testtable1.php?op=list&start=' . $start . '&limit=' . $limit, 2, \_MA_WGTESTMB_FORM_OK);
         }
         // Get Form Error
         $GLOBALS['xoopsTpl']->assign('error', $testtable1Obj->getHtmlErrors());

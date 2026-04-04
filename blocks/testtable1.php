@@ -34,11 +34,11 @@ require_once \XOOPS_ROOT_PATH . '/modules/wgtestmb/include/common.php';
  */
 function b_wgtestmb_testtable1_show($options)
 {
-    $helper        = Helper::getInstance();
-    $block         = [];
-    $typeBlock     = $options[0];
-    $limit         = $options[1];
-//    $lenghtTitle   = $options[2];
+    $helper      = Helper::getInstance();
+    $block       = [];
+    $typeBlock   = $options[0];
+    $limit       = $options[1];
+    $lenghtTitle = $options[2];
     \array_shift($options);
     \array_shift($options);
     \array_shift($options);
@@ -71,7 +71,7 @@ function b_wgtestmb_testtable1_show($options)
             // For the block: testtable1 top
             // Table testtable1 must have tt1_top or you have to change into corresponding field name
             $crTesttable1->setSort('tt1_top');
-            $crTesttable1->setOrder('ASC');
+            $crTesttable1->setOrder('DESC');
             break;
         case 'random':
             // For the block: testtable1 random
@@ -84,6 +84,7 @@ function b_wgtestmb_testtable1_show($options)
     unset($crTesttable1);
     if (\count($testtable1All) > 0) {
         foreach (\array_keys($testtable1All) as $i) {
+            $testtable1 = $testtable1All[$i]->getValuesTesttable1();
             /**
              * If you want to use the parameter for limits you have to adapt the line where it should be applied
              * e.g. change
@@ -95,10 +96,10 @@ function b_wgtestmb_testtable1_show($options)
              *     }
              *     $block[$i]['title'] =  $myTitle;
              */
-            $block[$i]['id'] = $testtable1All[$i]->getVar('tt1_id');
-            $block[$i]['name'] = \htmlspecialchars($testtable1All[$i]->getVar('tt1_name'), ENT_QUOTES | ENT_HTML5);
-            $block[$i]['date_text'] = \formatTimestamp($testtable1All[$i]->getVar('tt1_date'));
-            $block[$i]['comments'] = $testtable1All[$i]->getVar('tt1_comments');
+            $block[$i]['id']        = $testtable1['tt1_id'];
+            $block[$i]['name']      = $testtable1['name'];
+            $block[$i]['date_text'] = $testtable1['date_text'];
+            $block[$i]['comments']  = $testtable1['comments'];
         }
     }
 
